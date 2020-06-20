@@ -36,7 +36,7 @@ callback = function(response) {
     
 
     for (var item of array.data) {
-        console.log(item.priceUsd)
+        console.log(item.id)
     }
 
   });
