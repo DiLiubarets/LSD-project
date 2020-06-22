@@ -1,0 +1,58 @@
+/* body css */
+body {
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+/* app-bar  */
+.mui-appbar {
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+}
+.mui--text-title {
+  padding-left: 2em;
+  color: goldenrod;
+}
+img{
+    width: 70px;
+    height: 70px;
+}
+
+/* dropdown menu */
+.mui-btn {
+  background-image: linear-gradient(
+    to top,
+    #09203f 0%,
+    #537895 100%
+  ) !important;
+  padding-left: 2em;
+}
+#dropDown-menu {
+  margin-left: 65%;
+  padding-left: 1em;
+}
+.mui-btn--flat{
+    color: honeydew;
+}
+
+/* mychart */
+.chart-container {
+  margin-left: 3em;
+}
+#mui-row {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 4em;
+}
+
+/* footer */
+footer {
+  margin-top: 10em;
+  box-sizing: border-box;
+  height: 70px;
+  background-color: #eee;
+  /* border-top: 1px solid #e0e0e0; */
+  padding-top: 20px;
+}
+
+/* .mui-transition {
+  margin-left: 3em;
+} */
