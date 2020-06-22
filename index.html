@@ -1,21 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"/>
-  </head>
-  <body>
-    <div class="container">
-      <canvas id="myChart"></canvas>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Name</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+  <!-- load MUI -->
+
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+</head>
+
+<body>
+  <!-- appbar -->
+  <div class="mui-appbar">
+    <table>
+      <tr class="mui--appbar-height">
+        <td class="mui--text-title">
+          <img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/15664219991579250992-512.png"
+            alt="">Project name</td>
+      </tr>
+      <td id="today"></td>
+    </table>
+  </div>
+
+
+  <!-- Chart with coin price  -->
+
+  <div class="mui-row" id="mui-row">
+    <div class="mui-col-md-8">
+      <div class="mui-panel">
+        <div class="mui-container">
+          <canvas id="myChart"></canvas>
+        </div>
+
+      </div>
     </div>
-    <div id="price"></div>
-    <script src="myChart.js" type="text/javascript"></script>
-  </body>
+
+    <!-- dropdown menu with time candle and coin name -->
+
+    <div class="mui-col-md-4">
+      <div class="mui-panel">
+        <!-- real life price  -->
+        <span id="realTimePrice" class="mui--text-title">Live price:</span>
+        <div class="mui-dropdown dropDown-menu">
+          <div class="mui-dropdown">
+            <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+              <i class="fa fa-btc" aria-hidden="true"> Coins</i>
+
+              <span class="mui-caret"></span>
+            </button>
+            <ul class="mui-dropdown__menu">
+              <li>Bitcoin</li>
+              <li>Ethereum</li>
+              <li>Tether</li>
+              <li>Ripple</li>
+              <li>Bitcoin-cash</li>
+              <li>Bitcoin-sv</li>
+              <li>Litecoin</li>
+              <li>Binance-coin</li>
+            </ul>
+          </div>
+          <div class="mui-dropdown">
+            <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+              <i class="fa fa-bar-chart" aria-hidden="true">Candlestick time</i>
+
+              <span class="mui-caret"></span>
+            </button>
+            <ul class="mui-dropdown__menu" id="timeDropdown">
+              <li id="m1" value="1">1 min</li>
+              <li id="m5" value="5">5 min</li>
+              <li id="m15" value="15">15 min</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button class="mui-btn mui-btn--flat mui-btn--primary"><a href="#">About Bitcoin<i class="fa fa-arrow-right"
+            aria-hidden="true"></i></a></button>
+    </div>
+  </div>
+
+
+  <!-- footer c -->
+  <footer>
+    <div class="mui-container mui--text-center mui--text-bottom">
+      <a href="">
+        View project code on Github<br /><i class="fa fa-github" aria-hidden="true"></i></a>
+      <div class="mui--text-body2">
+        <h3>About project name</h3>
+        <p>Project name is an exchange-neutral tool designed for cryptocurrency/token traders.<br>
+
+          We provide accurate performance statistics, allowing traders to track real-time price.</p>
+
+      </div>
+
+    </div>
+
+  </footer>
+  <!-- script.js -->
+  <script src="myChart.js" type="text/javascript"></script>
+</body>
+
 </html>
