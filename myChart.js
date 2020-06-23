@@ -6,12 +6,7 @@ var historicalInterval;
 var globalIntervalNum;
 var globalIntervalString;
 var globalCoin;
-// let color = [];
-// for (i = 0; i < 50; i++) {
-//   arr.push(10,30,45,23,13,89,55,67,32,12,7,43,67,86,24,89);
-//   labels.push("Bitcoin");
-//   color.push("green");
-// }
+
 var myChart = document.getElementById("myChart").getContext("2d");
 
 // Global Options
@@ -28,13 +23,6 @@ let massPopChart = new Chart(myChart, {
       {
         label: "Price",
         data: arr,
-        //backgroundColor: 'none',
-        //  backgroundColor:[
-        //    'green',
-        //    'red',
-        //    'yellow',
-        //    'blue',
-        //  ],
         borderWidth: 1,
         borderColor: "black",
         hoverBorderWidth: 7,
@@ -157,19 +145,3 @@ $('#currencyDropdown').click(function (event) {
   configPrice(coin, globalIntervalString, globalIntervalNum)
   massPopChart.options.title.text = event.target.innerText;
 })
-
-// function addData(chart, label, data) {
-//   chart.data.labels.push(label);
-//   chart.data.datasets.forEach((dataset) => {
-//     dataset.data.push(data);
-//   });
-//   chart.update();
-// }
-
-// function removeData(chart) {
-//   chart.data.labels.pop();
-//   chart.data.datasets.forEach((dataset) => {
-//     dataset.data.pop();
-//   });
-//   chart.update();
-// }
