@@ -32,6 +32,12 @@ img{
 .mui-btn--flat{
     color: honeydew;
 }
+.mui-dropdown__menu li:hover {
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  color:white;
+  cursor:context-menu;
+  /* cursor:pointer; */
+}
 
 /* mychart */
 .chart-container {
