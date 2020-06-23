@@ -5,6 +5,9 @@ var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var labels = ["", "", "", "", "", "", "", "", "", "", "Live"];
 var liveInterval;
 var historicalInterval;
+var globalIntervalNum;
+var globalIntervalString;
+var globalCoin;
 // let color = [];
 // for (i = 0; i < 50; i++) {
 //   arr.push(10,30,45,23,13,89,55,67,32,12,7,43,67,86,24,89);
@@ -50,6 +53,7 @@ let massPopChart = new Chart(myChart, {
       ],
     },
     title: {
+
       display: true,
       text: "Bitcoin",
       fontSize: 25,
@@ -80,6 +84,10 @@ let massPopChart = new Chart(myChart, {
 
 
 var configPrice = function (coin, intervalString, intervalNum) {
+  
+  globalCoin = coin
+  globalIntervalString = intervalString
+  globalIntervalNum = intervalNum
 
   var currentTime = Date.now()
   var startTime = currentTime - 600000 * intervalNum * 1.25
@@ -117,7 +125,7 @@ function getHistorical(queryURL) {
     for (i; i < data.length; i++) {
       var price = parseInt(data[i].priceUsd)
       arr[i-delta-1] = price
-      labels[i-delta-1] = "Bitcoin"
+      labels[i-delta-1] = globalCoin
     }
     massPopChart.update()
   })
@@ -141,9 +149,15 @@ $.ajax({
 $('#timeDropdown').click(function (event) {
   var intervalNum = event.target.value
   var intervalString = event.target.id
-  configPrice("bitcoin", intervalString, intervalNum)
+  
+  configPrice(globalCoin, intervalString, intervalNum)
 })
 
+$('#currencyDropdown').click(function (event) {
+  var coin = event.target.id
+
+  configPrice(coin, globalIntervalString, globalIntervalNum)
+})
 
 
 
