@@ -141,9 +141,15 @@ $.ajax({
 $('#timeDropdown').click(function (event) {
   var intervalNum = event.target.value
   var intervalString = event.target.id
+  
   configPrice("bitcoin", intervalString, intervalNum)
 })
 
+$('#currencyDropdown').click(function (event) {
+  console.log(event.target.value);
+  console.log(event.target.id);
+  configPrice(event.target.id, "m1", 1)
+})
 
 
 
