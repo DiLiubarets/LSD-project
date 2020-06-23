@@ -1,3 +1,5 @@
+
+
 // CHART.JS
 var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var labels = ["", "", "", "", "", "", "", "", "", "", "Live"];
@@ -53,7 +55,7 @@ let massPopChart = new Chart(myChart, {
     title: {
 
       display: true,
-      text: "",
+      text: "Bitcoin",
       fontSize: 25,
       fontColor: 'gold',
 
@@ -78,6 +80,7 @@ let massPopChart = new Chart(myChart, {
     },
   },
 });
+
 
 
 var configPrice = function (coin, intervalString, intervalNum) {
@@ -121,12 +124,10 @@ function getHistorical(queryURL) {
     var i = delta
     for (i; i < data.length; i++) {
       var price = parseInt(data[i].priceUsd)
-      console.log("at "+price)
       arr[i-delta-1] = price
       labels[i-delta-1] = globalCoin
     }
     massPopChart.update()
-    // massPopChart.options.title.text=coin.charAt(0).toUpperCase() + coin.slice(1)
   })
 }
 
@@ -140,8 +141,9 @@ $.ajax({
   $('#realTimePrice').html('Live price: '+ price)
   arr[arr.length-1] = price
   massPopChart.update()
-  massPopChart.options.title.text=globalCoin.charAt(0).toUpperCase() + globalCoin.slice(1)
+
 })
+
 }
 
 $('#timeDropdown').click(function (event) {
@@ -153,10 +155,15 @@ $('#timeDropdown').click(function (event) {
 
 $('#currencyDropdown').click(function (event) {
   var coin = event.target.id
-  
+
   configPrice(coin, globalIntervalString, globalIntervalNum)
-  massPopChart.options.title.text = event.target.innerText;
 })
+
+
+
+
+
+
 
 // function addData(chart, label, data) {
 //   chart.data.labels.push(label);
