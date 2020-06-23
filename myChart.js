@@ -150,7 +150,7 @@ $('#timeDropdown').click(function (event) {
   var intervalNum = event.target.value
   var intervalString = event.target.id
   
-  configPrice("bitcoin", intervalString, intervalNum)
+  configPrice(globalCoin, intervalString, intervalNum)
 })
 
 $('#currencyDropdown').click(function (event) {
