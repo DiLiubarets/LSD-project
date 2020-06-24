@@ -17,26 +17,31 @@ img{
 }
 
 /* dropdown menu */
-.mui-btn {
-  background-image: linear-gradient(
+#dropDown-menu {
+  margin-left: 65%;
+  padding-left: 1em;
+}
+.mui-btn--flat, #submitEmail, .mui-btn--primary{
+    color: honeydew;
+    background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
   ) !important;
   padding-left: 2em;
 }
-#dropDown-menu {
-  margin-left: 65%;
-  padding-left: 1em;
-}
-.mui-btn--flat{
-    color: honeydew;
+#link-button{
+  color: honeydew;
 }
 .mui-dropdown__menu li:hover {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   color:white;
   cursor:context-menu;
-  /* cursor:pointer; */
+  
+}
+/* padding inside drop-douwn */
+#timeDropdown,  #currentCoin{
+  padding-left: 2em;
 }
 
 /* mychart */
@@ -49,16 +54,48 @@ img{
   margin-right: 4em;
 }
 
+/* contact form */
+form{
+  width: 50%;
+}
+/* style title */
+#title-crypto{
+  padding-left: 1em;
+}
+
+/* cards style */
+.card-example {
+  position: relative;
+  background-color: #fff;
+  width: 300px;
+  height: 350px;
+  padding: 3px;
+}
+
+.card-example img {
+  width: 100%;
+  height: 70%;
+}
+
+.card-example span.title {
+  display: inline-block;
+  position: absolute;
+  bottom: 140px;
+  left: 20px;
+}
+
+.card-example .label {
+  padding: 25px 25px 0;
+}
+
 /* footer */
 footer {
   margin-top: 10em;
   box-sizing: border-box;
   height: 70px;
   background-color: #eee;
-  /* border-top: 1px solid #e0e0e0; */
   padding-top: 20px;
 }
 
-/* .mui-transition {
-  margin-left: 3em;
-} */
+
+
