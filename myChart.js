@@ -145,7 +145,6 @@ function getHistorical(queryURL) {
     for (i; i < data.length; i++) {
       var price = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
       arr[i - delta - 1] = price;
-      //avgArr[i - delta - 1] = price-10;
       labels[i - delta - 1] = globalCoin;
     }
     movingAvg(data)
