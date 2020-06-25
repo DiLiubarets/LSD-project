@@ -41,7 +41,7 @@ img{
 }
 /* padding inside drop-douwn */
 #timeDropdown,  #currentCoin{
-  padding-left: 2em;
+  text-align: center;
 }
 
 /* mychart */
