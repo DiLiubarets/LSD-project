@@ -143,6 +143,7 @@ function getHistorical(queryURL) {
     var delta = data.length - arr.length;
     var i = delta;
     for (i; i < data.length; i++) {
+
       var price = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
       arr[i - delta - 1] = price;
       labels[i - delta - 1] = globalCoin;
