@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crypto project</title>
+    <title>Project Name</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -56,8 +56,8 @@
       <div class="mui-col-md-4">
         <div class="mui-panel">
           <!-- real life price  -->
-          <span id="realTimePrice" class="mui--text-title">Live price:</span
-          ><br />
+          <span id="realTimePrice" class="mui--text-title">Live price:</span><br />
+          <span id="average" class="mui--text-title">  average:</span><br />
           <!-- dropdown menu with coit names -->
           <div class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
@@ -80,7 +80,7 @@
           <!-- dropdown menu with time candels -->
           <div class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-              <i class="fa fa-bar-chart" aria-hidden="true">Time stick</i>
+              <i class="fa fa-bar-chart" aria-hidden="true">Time</i>
               <span class="mui-caret"></span>
             </button>
 
@@ -104,161 +104,154 @@
         </div>
       </div>
     </div>
-
     <!-- contact us form -->
     <div class="mui-container">
-      <form class="mui-form" id="contact-form">
-        <legend>
-          <strong>Contact Us <i class="fa fa-envelope"></i></strong>
-        </legend>
-        <div class="mui-textfield">
-          <input id="inputName" type="text" required />
-          <label>Name</label>
-        </div>
-        <div class="mui-textfield mui-textfield--float-label">
-          <input id="inputEmail" type="email" required />
-          <label>Email Address</label>
-        </div>
-        <div class="mui-textfield mui-textfield--float-label">
-          <textarea id="inputMessage" required></textarea>
-          <label>Textarea</label>
-        </div>
-        <button id="submitEmail" type="submit" class="mui-btn mui-btn--flat">
-          Submit
-        </button>
-        <p id="my-form-status"></p>
-      </form>
-    </div>
-    <div class="mui-container mui--text-center">
-      <div class="mui--text-body2">
-        <h3><strong>About project name</strong></h3>
-        <p>
-          Project name is an exchange-neutral tool designed for
-          cryptocurrency/token traders.<br />
-
-          We provide accurate performance statistics, allowing traders to track
-          real-time price.
-        </p>
+    <form class="mui-form" id="contact-form">
+      <legend>Contact Us</legend>
+      <div class="mui-textfield">
+        <input id="inputName" type="text" required />
+        <label>Name</label>
       </div>
-    </div>
-
-    <br />
-
-
-
-    <!-- cards for learn -->
-    <div id="title-crypto"class="mui--text-display3">Crypto</div><br />
-    <div class="mui--text-display4"> NEWS</div>
-    <div class="mui-container">
-      <div class="mui-row">
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <mui-btn class="mui-btn mui-btn--flat"><a id="link-button">Share</a></mui-btn>
-            <mui-btn class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></mui-btn>
-          </div>
-        </div>
-        <br />
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
-          </div>
-        </div>
-        <br />
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
-          </div>
-        </div>
+      <div class="mui-textfield mui-textfield--float-label">
+        <input id="inputEmail" type="email" required />
+        <label>Email Address</label>
       </div>
-        <br />
-        <div class="mui-row">
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
-          </div>
-        </div>
-        <br />
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
-          </div>
-        </div>
-        <br />
-        <div class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <span class="title mui--text-light mui--text-headline"></span>
-            <img
-              id="card-img"
-              src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
-              alt=""
-            />
-            <div class="label">
-              <div class="mui--text"></div>
-              <div class="mui--text"></div>
-            </div>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
-            <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
-          </div>
-        </div>
-        <br />
+      <div class="mui-textfield mui-textfield--float-label">
+        <textarea id="inputMessage" required></textarea>
+        <label>Textarea</label>
       </div>
-    </div>
-    <br />
+      <button id="submitEmail" type="submit" class="mui-btn mui-btn--flat">
+        Submit
+      </button>
+      <p id="my-form-status"></p>
+    </form>
+  </div>
+  <div class="mui-container mui--text-center">
+    <div class="mui--text-body2">
+      <h3><strong>About project name</strong></h3>
+      <p>
+        Project name is an exchange-neutral tool designed for
+        cryptocurrency/token traders.<br />
 
+        We provide accurate performance statistics, allowing traders to track
+        real-time price.
+      </p>
+    </div>
+  </div>
+
+  <br />
+   <!-- cards for learn -->
+   <div id="title-crypto"class="mui--text-display3">Crypto</div><br />
+   <div class="mui--text-display4"> NEWS</div>
+   <div class="mui-container">
+     <div class="mui-row">
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <mui-btn class="mui-btn mui-btn--flat"><a id="link-button">Share</a></mui-btn>
+           <mui-btn class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></mui-btn>
+         </div>
+       </div>
+       <br />
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
+         </div>
+       </div>
+       <br />
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
+         </div>
+       </div>
+     </div>
+       <br />
+       <div class="mui-row">
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
+         </div>
+       </div>
+       <br />
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
+         </div>
+       </div>
+       <br />
+       <div class="mui-col-md-4">
+         <div class="card-example mui--text-center mui--z1">
+           <span class="title mui--text-light mui--text-headline"></span>
+           <img
+             id="card-img"
+             src="https://static.coindesk.com/wp-content/uploads/2018/01/shutterstock_667929118-e1516901233751-775x581.jpg?format=jp2"
+             alt=""
+           />
+           <div class="label">
+             <div class="mui--text"></div>
+             <div class="mui--text"></div>
+           </div>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Share</a></button>
+           <button class="mui-btn mui-btn--flat"><a id="link-button">Explore</a></button>
+         </div>
+       </div>
+       <br />
+     </div>
+   </div>
+   <br />
     <!-- footer c -->
     <footer>
       <div class="mui-container mui--text-center mui--text-bottom">
