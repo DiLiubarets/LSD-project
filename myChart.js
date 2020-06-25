@@ -1,6 +1,7 @@
-// CHART.JS
 var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var avgArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var labels = ["", "", "", "", "", "", "", "", "", "", "Live"];
+var labels2 = ["", "", "", "", "", "", "", "", "", "", "Live"];
 var liveInterval;
 var historicalInterval;
 var globalIntervalNum;
@@ -27,13 +28,12 @@ var aboutCoin = {
   ["binance-coin"]:
     "Binance Coin is the crypto-coin issued by Binance exchange, and trades with the BNB symbol. Binance coin runs on the Ethereum blockchain with ERC 20 standard, and has a strict limit of maximum 200 million BNB tokens.",
 };
-
-// Global Options
-Chart.defaults.global.defaultFontFamily = 'Helvetica';
+// Global Options for my chart
+Chart.defaults.global.defaultFontFamily = "Helvetica";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "black";
 
-
+// CHART.JS
 let massPopChart = new Chart(myChart, {
   type: "line", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
@@ -47,7 +47,16 @@ let massPopChart = new Chart(myChart, {
         hoverBorderWidth: 7,
         hoverBorderColor: "red",
       },
+      {
+        label: "5 candle average",
+        data: avgArr,
+        borderWidth: 1,
+        // backgroundColor: 'yellow',
+        hoverBorderWidth: 7,
+        hoverBorderColor: "orange",
+      }
     ],
+  
   },
   options: {
     scales: {
@@ -58,12 +67,10 @@ let massPopChart = new Chart(myChart, {
       ],
     },
     title: {
-
       display: true,
       text: "",
       fontSize: 25,
-      fontColor: 'gold',
-
+      fontColor: "gold",
     },
     legend: {
       display: false,
@@ -86,40 +93,44 @@ let massPopChart = new Chart(myChart, {
   },
 });
 
-
 var configPrice = function (coin, intervalString, intervalNum) {
-  
-  globalCoin = coin
-  globalIntervalString = intervalString
-  globalIntervalNum = intervalNum
+  globalCoin = coin;
+  globalIntervalString = intervalString;
+  globalIntervalNum = intervalNum;
 
   //set description
   $("#description").html(aboutCoin[coin]);
+  // title for coins
+  massPopChart.options.title.text = coin.toUpperCase();
 
-   // title for coins
-   massPopChart.options.title.text = coin.toUpperCase();
+  var currentTime = Date.now();
+  var startTime = currentTime - 600000 * intervalNum * 2;
+  var queryHistorical =
+    "https://api.coincap.io/v2/assets/" +
+    coin +
+    "/history?interval=" +
+    intervalString +
+    "&start=" +
+    startTime +
+    "&end=" +
+    currentTime;
+  var queryLive = "https://api.coincap.io/v2/rates/" + coin;
 
-  var currentTime = Date.now()
-  var startTime = currentTime - 600000 * intervalNum * 1.25
-  var queryHistorical = "https://api.coincap.io/v2/assets/" + coin + "/history?interval=" + intervalString + "&start=" + startTime + '&end=' + currentTime
-  var queryLive = 'https://api.coincap.io/v2/rates/' + coin
+  getHistorical(queryHistorical);
+  getLivePrice(queryLive);
 
-  getHistorical(queryHistorical)
-  getLivePrice(queryLive)
+  clearInterval(historicalInterval);
+  clearInterval(liveInterval);
 
-  clearInterval(historicalInterval)
-  clearInterval(liveInterval)
+  historicalInterval = setInterval(function () {
+    getHistorical(queryHistorical);
+  }, intervalNum * 60000);
+  liveInterval = setInterval(function () {
+    getLivePrice(queryLive);
+  }, 5000);
+};
 
-  historicalInterval = setInterval(function(){
-    console.log('works')
-    getHistorical(queryHistorical)
-  }, intervalNum*60000)
-  liveInterval = setInterval(function() {
-    getLivePrice(queryLive)
-  }, 5000)
-}
-
-configPrice("bitcoin", "m1", 1)
+configPrice("bitcoin", "m1", 1);
 
 
 // function getting historical data price
@@ -128,52 +139,75 @@ function getHistorical(queryURL) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    var data = response.data
-
-    console.log(data)
-
-    var delta = data.length - arr.length
-    var i = delta
+    var data = response.data;
+    var delta = data.length - arr.length;
+    var i = delta;
     for (i; i < data.length; i++) {
-      var price = parseFloat(data[i].priceUsd).toFixed(3);
-      arr[i-delta-1] = price
-      labels[i-delta-1] = globalCoin
-    }
-    massPopChart.update()
-  })
-}
 
+      var price = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
+      arr[i - delta - 1] = price;
+      labels[i - delta - 1] = globalCoin;
+    }
+    movingAvg(data)
+    massPopChart.update();
+  });
+}
 
 // function for live price
 function getLivePrice(queryURL) {
-$.ajax({
-  url: queryURL,
-  method: "GET",
-}).then(function(response){
-  var price = parseFloat(response.data.rateUsd).toFixed(3);
-  console.log(price)
-  $('#realTimePrice').html('Live price: '+ price)
-  arr[arr.length-1] = price
-  massPopChart.update()
-  // massPopChart.options.title.text=globalCoin.charAt(0).toUpperCase() + globalCoin.slice(1)
-})
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    var price = parseFloat(parseFloat(response.data.rateUsd).toFixed(3));
+    $("#realTimePrice").html("Live price: " + price);
+    arr[arr.length - 1] = price;
+    
+    // for moving average live
+    if (arr[0] != 0) {
+      avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
+    }
+    massPopChart.update();
+  });
 }
 
-// listener for time duration menu
-$('#timeDropdown').click(function (event) {
-  var intervalNum = event.target.value
-  var intervalString = event.target.id
+
+// function for moving average 
+function movingAvg(data) {
   
-  configPrice(globalCoin, intervalString, intervalNum)
-})
+  var delta = data.length - avgArr.length;
+  var i = delta;
+
+    for (i; i < data.length; i++) {
+
+      var price1 = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
+      var price2 = parseFloat(parseFloat(data[i-1].priceUsd).toFixed(3));
+      var price3 = parseFloat(parseFloat(data[i-2].priceUsd).toFixed(3));
+      var price4 = parseFloat(parseFloat(data[i-3].priceUsd).toFixed(3));
+      var price5 = parseFloat(parseFloat(data[i-4].priceUsd).toFixed(3));
+
+      avgArr[i - delta - 1] = ((price1+price2+price3+price4+price5)/5).toFixed(3);
+      $('#average').html( " average: " + avgArr[i - delta - 1] )
+    }
+
+    avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
+
+}
+
+
+
+// listener for time duration menu
+$("#timeDropdown").click(function (event) {
+  var intervalNum = event.target.value;
+  var intervalString = event.target.id;
+  configPrice(globalCoin, intervalString, intervalNum);
+});
 
 // listener for coin name
-$('#currentCoin').click(function (event) {
-  var coin = event.target.id
-  
-  configPrice(coin, globalIntervalString, globalIntervalNum)
-  massPopChart.options.title.text = event.target.innerText;
-})
+$("#currentCoin").click(function (event) {
+  var coin = event.target.id;
+  configPrice(coin, globalIntervalString, globalIntervalNum);
+});
 
 // ajax request for contact us form with formspree
 $("#submitEmail").click(function (e) {
@@ -210,4 +244,3 @@ $("#submitEmail").click(function (e) {
     xhr.send(data);
   }
 });
-
