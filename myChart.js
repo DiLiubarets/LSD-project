@@ -289,7 +289,6 @@ function getNews(coin){
       $('#des' + i).text(description)
       $('#link-button' + i).attr('href',explore)
       $('#card-img' + i).attr('src', image)
-      
     }
     
   
