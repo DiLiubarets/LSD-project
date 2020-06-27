@@ -54,9 +54,14 @@ header table {
   color: honeydew;
 }
 /* padding inside drop-douwn */
+<<<<<<< HEAD
 #timeDropdown,
 #currentCoin {
   padding-left: 2em;
+=======
+#timeDropdown,  #currentCoin{
+  text-align: center;
+>>>>>>> cac59967895abb48c05ae06c9653ebf05b3e476b
 }
 
 
