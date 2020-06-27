@@ -11,38 +11,53 @@ body {
   padding-left: 2em;
   color: goldenrod;
 }
-img{
-    width: 70px;
-    height: 70px;
+img {
+  width: 70px;
+  height: 70px;
+}
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
 }
 
-/* dropdown menu */
-#dropDown-menu {
-  margin-left: 65%;
-  padding-left: 1em;
+header ul.mui-list--inline {
+  margin-bottom: 0;
 }
-.mui-btn--flat, #submitEmail, .mui-btn--primary{
-    color: honeydew;
-    background-image: linear-gradient(
+
+header a {
+  color: white;
+}
+
+header table {
+  width: 100%;
+}
+
+
+/* dropdown menu */
+.mui-btn {
+  background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
   ) !important;
   padding-left: 2em;
 }
-#link-button{
-  color: honeydew;
+#dropDown-menu {
+  margin-left: 65%;
+  padding-left: 1em;
 }
-.mui-dropdown__menu li:hover {
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-  color:white;
-  cursor:context-menu;
-  
+.mui-btn--flat,
+#submitEmail {
+  color: honeydew;
 }
 /* padding inside drop-douwn */
 #timeDropdown,  #currentCoin{
   text-align: center;
 }
+
 
 /* mychart */
 .chart-container {
@@ -53,23 +68,23 @@ img{
   margin-left: 2em;
   margin-right: 4em;
 }
-
 /* contact form */
-form{
+form {
   width: 50%;
+  /* margin: 2em; */
 }
+
 /* style title */
-#title-crypto{
+#title-crypto {
   padding-left: 1em;
 }
-
 /* cards style */
 .card-example {
   position: relative;
   background-color: #fff;
-  width: 300px;
+  /* width: 300px;
   height: 350px;
-  padding: 3px;
+  padding: 3px; */
 }
 
 .card-example img {
@@ -80,22 +95,25 @@ form{
 .card-example span.title {
   display: inline-block;
   position: absolute;
-  bottom: 140px;
+  /* padding-top: 2em; */
   left: 20px;
 }
 
 .card-example .label {
-  padding: 25px 25px 0;
+  /* padding: 25px 25px 0; */
 }
-
 /* footer */
 footer {
   margin-top: 10em;
   box-sizing: border-box;
   height: 70px;
   background-color: #eee;
+  /* border-top: 1px solid #e0e0e0; */
   padding-top: 20px;
 }
 
-
-
+@media (min-width: 468px){
+  #description{
+    float: left;
+  }
+}
