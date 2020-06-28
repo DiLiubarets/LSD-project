@@ -35,6 +35,7 @@ var aboutCoin = {
 Chart.defaults.global.defaultFontFamily = "Helvetica";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "black";
+// Chart.defaults.global.defaultColor
 
 // CHART.JS
 let massPopChart = new Chart(myChart, {
@@ -47,10 +48,13 @@ let massPopChart = new Chart(myChart, {
         fill: false,
         data: arr,
         borderWidth: 1,
+        // borderColor: "#BFDFBF",
         borderColor: "green",
-        backgroundColor : 'green',
+        // backgroundColor: '#BFDFBF',
+        backgroundColor: 'green',
         hoverBorderWidth: 7,
         hoverBorderColor: "red",
+        // hoverBorderColor: ""
       },
       {
         label: "5 candle average",
@@ -58,9 +62,12 @@ let massPopChart = new Chart(myChart, {
         data: avgArr,
         borderWidth: 1,
         borderColor: "grey",
+        // borderColor: ""
         backgroundColor : 'grey',
+        // backgroundColor: ''
         hoverBorderWidth: 7,
         hoverBorderColor: "orange",
+        // hoverBorderColor: ""
       }
     ],
   
@@ -78,12 +85,14 @@ let massPopChart = new Chart(myChart, {
       text: "",
       fontSize: 25,
       fontColor: "gold",
+      // fontColor: ""
     },
     legend: {
       display: true,
       position: 'bottom',
       labels: {
         fontColor: "#000",
+        // fontColor: ""
       },
     },
     layout: {
@@ -295,3 +304,48 @@ function getNews(coin){
   })
 }
 
+function getAllColors() {
+  // regex via http://stackoverflow.com/a/7543829/149636
+  var rgbRegex = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/;
+
+  var allColors = [];
+
+  var elems = document.getElementsByTagName('*');
+  var total = elems.length;
+
+  var x, y, elemStyles, styleName, styleValue, rgbVal;
+
+  for (x = 0; x < total; x++) {
+    elemStyles = window.getComputedStyle(elems[x]);
+
+    for (y = 0; y < elemStyles.length; y++) {
+      styleName = elemStyles[y];
+      styleValue = elemStyles[styleName];
+      if (!styleValue) {
+        continue;
+      }
+
+      // convert to string to avoid match exceptions
+      styleValue += "";
+
+      rgbVal = styleValue.match(rgbRegex);
+      if (!rgbVal) { // property does not contain a color
+        continue;
+      }
+
+      if (allColors.indexOf(rgbVal.input) == -1) { // avoid duplicate entries
+        allColors.push(rgbVal.input);
+      }
+
+    }
+
+  }
+
+  // return allColors;
+  console.log(allColors);
+}
+
+
+
+
+      getAllColors();
