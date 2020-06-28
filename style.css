@@ -120,3 +120,41 @@ footer {
     float: left;
   }
 }
+
+.fa-bitcoin {
+  color: goldenrod;
+}
+
+ul {
+  padding-left: 0;
+}
+
+p {
+  width: 750px;
+}
+.mui-footer {
+  /* padding-bottom: 20px; */
+  width: 500px;
+}
+
+.mui-divider {
+  text-align: center;
+}
+.aGithub {
+  padding-bottom: 20px;
+}
+
+/*
+.aCoin {
+  float: middle;
+  text-align: center;
+}
+
+.aNY {
+  float: right;
+} */
+
+/* .fa-github:hover + .spanGithub {
+  font-size: 3rem;
+  display: inline-block;
+} */
