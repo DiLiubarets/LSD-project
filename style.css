@@ -35,7 +35,6 @@ header table {
   width: 100%;
 }
 
-
 /* dropdown menu */
 .mui-btn {
   background-image: linear-gradient(
@@ -72,6 +71,10 @@ header table {
 form {
   width: 50%;
   /* margin: 2em; */
+}
+/* contact form messagebox */
+#inputMessage {
+  resize: none;
 }
 
 /* style title */
