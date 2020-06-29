@@ -295,3 +295,61 @@ function getNews(coin){
   })
 }
 
+// GMAIL News Modal
+
+$("#newsBtn").on("click", function(){
+  event.preventDefault();
+  var key= "c7607f7ed4342aee28bd3bb885a9faac";
+  var key2= "f0307841dc1bad77a771b46d5faa4fbc";
+  var search = massPopChart.options.title.text;
+  
+  switch (search){
+    case "WAVES":
+      search += " Enterprise Blockchain";
+      break
+    case "EOS":
+      search += " Blockchain";
+      break
+  }
+  
+  var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
+  
+  $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function(response) {
+      console.log(response)
+      var results = response; 
+      $(results.articles).each(function(index){
+      var title  = response.articles[index].title;
+      var webUrl = response.articles[index].url;
+      var source = response.articles[index].source.name;
+      var newsLink = $("<a>");
+      var dateLine = $("<p>");
+  
+      newsLink.attr("href", webUrl);
+      newsLink.attr("target", "_blank");
+      newsLink.text(title);
+
+      dateLine.text("Date: " + response.articles[index].publishedAt);
+      dateLine.attr("class", "modal-dates");
+    
+      $("#modal-links").append(newsLink);
+      $("#modal-links").append("<br>","Source: ", source, dateLine, "<hr>",);
+      })
+      $("#newsModal").css("display", "block"); 
+    })
+  })
+
+$("#close-modal").on("click", function(){
+    event.preventDefault();
+    $("#newsModal").css("display", "none");
+    $("#modal-links").empty()
+})
+
+$(window).on("click", function(event){
+    if(event.target.id == "newsModal"){
+      $("#newsModal").hide();
+      $("#modal-links").empty()
+    }
+})

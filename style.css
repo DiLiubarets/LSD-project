@@ -2,7 +2,6 @@
 body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
-
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -15,7 +14,7 @@ img {
   width: 70px;
   height: 70px;
 }
-header {
+.mui-appbar header {
   position: fixed;
   top: 0;
   right: 0;
@@ -27,11 +26,11 @@ header ul.mui-list--inline {
   margin-bottom: 0;
 }
 
-header a {
+.mui-appbar header a {
   color: white;
 }
 
-header table {
+.mui-appbar header table {
   width: 100%;
 }
 
@@ -51,6 +50,11 @@ header table {
 .mui-btn--flat,
 #submitEmail {
   color: honeydew;
+}
+.mui-dropdown__menu li:hover {
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  color:white;
+  cursor:context-menu;
 }
 /* padding inside drop-douwn */
 #timeDropdown,  #currentCoin{
@@ -102,10 +106,10 @@ form {
   left: 20px;
 }
 
-.card-example .label {
-  /* padding: 25px 25px 0; */
-}
-/* footer */
+/* .card-example .label {
+  padding: 25px 25px 0;
+} */
+
 footer {
   margin-top: 10em;
   box-sizing: border-box;
@@ -129,9 +133,11 @@ ul {
   padding-left: 0;
 }
 
-p {
-  width: 750px;
-}
+/* Wasn't sure why this was added, but it was being applied to all <p> divs globally */
+/* p {
+  max-width: 750px;
+} */
+
 .mui-footer {
   /* padding-bottom: 20px; */
   width: 500px;
@@ -143,6 +149,62 @@ p {
 .aGithub {
   padding-bottom: 20px;
 }
+
+/* modal */
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-header{
+text-align: center;
+background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+border-radius: 20px 20px 0px 0px;
+padding:10px;
+color: goldenrod;
+}
+
+.modal-footer{
+  text-align: center;
+  padding: 0px 0px 15px 0px;
+  margin: 0;
+  color: #ccc;
+}
+.modal-dates{
+  float: right;
+  color: #ccc;
+}
+
+#modal-body{
+  position: relative;
+  z-index: 2;
+  width: 75%;
+  background-color: honeydew;
+  border-radius: 20px;
+  margin: 10% auto;
+}
+
+#modal-links{
+  padding: 25px;
+}
+
+#close-modal{
+  float: right;
+  color: #ccc;
+  font-size: 25px;
+}
+#close-modal:hover{
+  color: black;
+  cursor: pointer;
+}
+
 
 /*
 .aCoin {
