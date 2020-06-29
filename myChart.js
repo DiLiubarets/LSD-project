@@ -1,6 +1,8 @@
-// CHART.JS
+var today = moment().format("YYYY MMM Do"); 
 var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var avgArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var labels = ["", "", "", "", "", "", "", "", "", "", "Live"];
+var labels2 = ["", "", "", "", "", "", "", "", "", "", "Live"];
 var liveInterval;
 var historicalInterval;
 var globalIntervalNum;
@@ -8,6 +10,8 @@ var globalIntervalString;
 var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
 
+// aos function animate 
+AOS.init();
 // object with description about coins
 var aboutCoin = {
   bitcoin:
@@ -27,27 +31,39 @@ var aboutCoin = {
   ["binance-coin"]:
     "Binance Coin is the crypto-coin issued by Binance exchange, and trades with the BNB symbol. Binance coin runs on the Ethereum blockchain with ERC 20 standard, and has a strict limit of maximum 200 million BNB tokens.",
 };
-
-// Global Options
-Chart.defaults.global.defaultFontFamily = 'Helvetica';
+// Global Options for my chart
+Chart.defaults.global.defaultFontFamily = "Helvetica";
 Chart.defaults.global.defaultFontSize = 18;
 Chart.defaults.global.defaultFontColor = "black";
 
-
+// CHART.JS
 let massPopChart = new Chart(myChart, {
   type: "line", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
     labels: labels,
     datasets: [
       {
-        label: "Price",
+        label: "Price USD",
+        fill: false,
         data: arr,
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: "green",
+        backgroundColor : 'green',
         hoverBorderWidth: 7,
         hoverBorderColor: "red",
       },
+      {
+        label: "5 candle average",
+        fill: false,
+        data: avgArr,
+        borderWidth: 1,
+        borderColor: "grey",
+        backgroundColor : 'grey',
+        hoverBorderWidth: 7,
+        hoverBorderColor: "orange",
+      }
     ],
+  
   },
   options: {
     scales: {
@@ -58,16 +74,14 @@ let massPopChart = new Chart(myChart, {
       ],
     },
     title: {
-
       display: true,
       text: "",
       fontSize: 25,
-      fontColor: 'gold',
-
+      fontColor: "gold",
     },
     legend: {
-      display: false,
-      position: "left",
+      display: true,
+      position: 'bottom',
       labels: {
         fontColor: "#000",
       },
@@ -86,41 +100,39 @@ let massPopChart = new Chart(myChart, {
   },
 });
 
-
 var configPrice = function (coin, intervalString, intervalNum) {
-  
-  globalCoin = coin
-  globalIntervalString = intervalString
-  globalIntervalNum = intervalNum
+  globalCoin = coin;
+  globalIntervalString = intervalString;
+  globalIntervalNum = intervalNum;
 
   //set description
   $("#description").html(aboutCoin[coin]);
+  // title for coins
+  massPopChart.options.title.text = coin.toUpperCase();
 
-   // title for coins
-   massPopChart.options.title.text = coin.toUpperCase();
+  var currentTime = Date.now();
+  var startTime = currentTime - 600000 * intervalNum * 2;
+  var queryHistorical =
+    "https://api.coincap.io/v2/assets/" + coin + "/history?interval=" + intervalString + "&start=" + startTime + "&end=" + currentTime;
+  var queryLive = "https://api.coincap.io/v2/rates/" + coin;
 
-  var currentTime = Date.now()
-  var startTime = currentTime - 600000 * intervalNum * 1.25
-  var queryHistorical = "https://api.coincap.io/v2/assets/" + coin + "/history?interval=" + intervalString + "&start=" + startTime + '&end=' + currentTime
-  var queryLive = 'https://api.coincap.io/v2/rates/' + coin
+  getHistorical(queryHistorical);
+  getLivePrice(queryLive);
+  getNews(coin)
 
-  getHistorical(queryHistorical)
-  getLivePrice(queryLive)
+  clearInterval(historicalInterval);
+  clearInterval(liveInterval);
 
-  clearInterval(historicalInterval)
-  clearInterval(liveInterval)
+  historicalInterval = setInterval(function () {
+    getHistorical(queryHistorical);
+  }, intervalNum * 60000);
+  liveInterval = setInterval(function () {
+    getLivePrice(queryLive);
+  }, 5000);
+};
 
-  historicalInterval = setInterval(function(){
-    console.log('works')
-    getHistorical(queryHistorical)
-  }, intervalNum*60000)
-  liveInterval = setInterval(function() {
-    getLivePrice(queryLive)
-  }, 5000)
-}
-
-configPrice("bitcoin", "m1", 1)
-
+configPrice("bitcoin", "m1", 1);
+// generalPurpose();
 
 // function getting historical data price
 function getHistorical(queryURL) {
@@ -128,52 +140,92 @@ function getHistorical(queryURL) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    var data = response.data
-
-    console.log(data)
-
-    var delta = data.length - arr.length
-    var i = delta
+    var data = response.data;
+    var delta = data.length - arr.length;
+    var i = delta;
     for (i; i < data.length; i++) {
-      var price = parseInt(data[i].priceUsd).toFixed(3);
-      arr[i-delta-1] = price
-      labels[i-delta-1] = globalCoin
-    }
-    massPopChart.update()
-  })
-}
 
+      var price = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
+      arr[i - delta - 1] = price;
+      //avgArr[i - delta - 1] = price-10;
+      labels[i - delta - 1] = globalCoin;
+    }
+    movingAvg(data)
+    massPopChart.update();
+  });
+}
 
 // function for live price
 function getLivePrice(queryURL) {
-$.ajax({
-  url: queryURL,
-  method: "GET",
-}).then(function(response){
-  var price = parseFloat(response.data.rateUsd).toFixed(3);
-  console.log(price)
-  $('#realTimePrice').html('Live price: '+ price)
-  arr[arr.length-1] = price
-  massPopChart.update()
-  // massPopChart.options.title.text=globalCoin.charAt(0).toUpperCase() + globalCoin.slice(1)
-})
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    var price = parseFloat(parseFloat(response.data.rateUsd).toFixed(3));
+    console.log(price);
+    $("#realTimePrice").html("Live price: $" + price);
+    arr[arr.length - 1] = price;
+    
+    // for moving average live
+    if (arr[0] != 0) {
+      avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
+    }
+
+    massPopChart.update();
+  });
+}
+
+
+// function for moving average 
+function movingAvg(data) {
+  
+  var delta = data.length - avgArr.length;
+  var i = delta;
+
+    for (i; i < data.length; i++) {
+
+      var price1 = parseFloat(parseFloat(data[i].priceUsd).toFixed(3));
+      var price2 = parseFloat(parseFloat(data[i-1].priceUsd).toFixed(3));
+      var price3 = parseFloat(parseFloat(data[i-2].priceUsd).toFixed(3));
+      var price4 = parseFloat(parseFloat(data[i-3].priceUsd).toFixed(3));
+      var price5 = parseFloat(parseFloat(data[i-4].priceUsd).toFixed(3));
+
+      avgArr[i - delta - 1] = ((price1+price2+price3+price4+price5)/5).toFixed(3);
+      $('#average').html( " <i class='fa fa-bar-chart' aria-hidden='true'></i> "+' average: $' + avgArr[i - delta - 1] )
+    }
+
+    avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
+
+}
+
+// function to for testing APi
+function generalPurpose() {
+  var queryURL = "https://api.coincap.io/v2/rates";
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    //console.log(response.data)
+    for (assets of response.data) {
+      if (assets.type == "crypto") {
+        console.log(assets.id);
+      }
+    }
+  });
 }
 
 // listener for time duration menu
-$('#timeDropdown').click(function (event) {
-  var intervalNum = event.target.value
-  var intervalString = event.target.id
-  
-  configPrice(globalCoin, intervalString, intervalNum)
-})
+$("#timeDropdown").click(function (event) {
+  var intervalNum = event.target.value;
+  var intervalString = event.target.id;
+  configPrice(globalCoin, intervalString, intervalNum);
+});
 
 // listener for coin name
-$('#currentCoin').click(function (event) {
-  var coin = event.target.id
-  
-  configPrice(coin, globalIntervalString, globalIntervalNum)
-  massPopChart.options.title.text = event.target.innerText;
-})
+$("#currentCoin").click(function (event) {
+  var coin = event.target.id;
+  configPrice(coin, globalIntervalString, globalIntervalNum);
+});
 
 // ajax request for contact us form with formspree
 $("#submitEmail").click(function (e) {
@@ -211,3 +263,93 @@ $("#submitEmail").click(function (e) {
   }
 });
 
+
+
+// API for news 
+function getNews(coin){
+  var urlNews = 'https://cors-anywhere.herokuapp.com/' + "https://newsapi.org/v2/everything?language=en&q="+ coin + "+crypto" + "&from="+ today +"&sortBy=publishedAt&apiKey=46f225ffb36d463dbf82d74ee65a1700"
+  
+  // var urlNews = 'https://cors-anywhere.herokuapp.com/' + 'http://newsapi.org/v2/top-headlines?' +
+  // 'country=ca&' +
+  // 'apiKey=46f225ffb36d463dbf82d74ee65a1700';
+  $.ajax({
+    url: urlNews,
+    method: "GET",
+  }).then(function (response) {
+    //console.log(response)
+    for (i=0; i<6; i++){
+      var articles = response.articles
+      console.log(articles)
+      var title = response.articles[i].title
+      var description = response.articles[i].description
+      var explore = response.articles[i].url
+      var image = response.articles[i].urlToImage
+      // console.log(explore)
+      $('#title'+ i).text(title)
+      $('#des' + i).text(description)
+      $('#link-button' + i).attr('href',explore)
+      $('#card-img' + i).attr('src', image)
+    }
+    
+  
+  })
+}
+
+// GMAIL News Modal
+
+$("#newsBtn").on("click", function(){
+  event.preventDefault();
+  var key= "c7607f7ed4342aee28bd3bb885a9faac";
+  var key2= "f0307841dc1bad77a771b46d5faa4fbc";
+  var search = massPopChart.options.title.text;
+  
+  switch (search){
+    case "WAVES":
+      search += " Enterprise Blockchain";
+      break
+    case "EOS":
+      search += " Blockchain";
+      break
+  }
+  
+  var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
+  
+  $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function(response) {
+      console.log(response)
+      var results = response; 
+      $(results.articles).each(function(index){
+      var title  = response.articles[index].title;
+      var webUrl = response.articles[index].url;
+      var source = response.articles[index].source.name;
+      var newsLink = $("<a>");
+      var dateLine = $("<p>");
+  
+      newsLink.attr("href", webUrl);
+      newsLink.attr("target", "_blank");
+      newsLink.text(title);
+
+      dateLine.text("Date: " + response.articles[index].publishedAt);
+      dateLine.attr("class", "modal-dates");
+    
+      $("#modal-links").append(newsLink);
+      $("#modal-links").append("<br>","Source: ", source, dateLine, "<hr>",);
+      })
+      $("#newsModal").css("display", "block"); 
+    })
+  })
+
+$("#close-modal").on("click", function(){
+    event.preventDefault();
+    $("#newsModal").css("display", "none");
+    $("#modal-links").empty()
+})
+
+$(window).on("click", function(event){
+    if(event.target.id == "newsModal"){
+      $("#newsModal").hide();
+      $("#modal-links").empty()
+    }
+})

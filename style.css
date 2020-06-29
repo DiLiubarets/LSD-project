@@ -2,7 +2,6 @@
 body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
-
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -11,38 +10,57 @@ body {
   padding-left: 2em;
   color: goldenrod;
 }
-img{
-    width: 70px;
-    height: 70px;
+img {
+  width: 70px;
+  height: 70px;
+}
+.mui-appbar header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+header ul.mui-list--inline {
+  margin-bottom: 0;
+}
+
+.mui-appbar header a {
+  color: white;
+}
+
+.mui-appbar header table {
+  width: 100%;
 }
 
 /* dropdown menu */
-#dropDown-menu {
-  margin-left: 65%;
-  padding-left: 1em;
-}
-.mui-btn--flat, #submitEmail, .mui-btn--primary{
-    color: honeydew;
-    background-image: linear-gradient(
+.mui-btn {
+  background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
   ) !important;
   padding-left: 2em;
 }
-#link-button{
+#dropDown-menu {
+  margin-left: 65%;
+  padding-left: 1em;
+}
+.mui-btn--flat,
+#submitEmail {
   color: honeydew;
 }
 .mui-dropdown__menu li:hover {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   color:white;
   cursor:context-menu;
-  
 }
 /* padding inside drop-douwn */
 #timeDropdown,  #currentCoin{
-  padding-left: 2em;
+  text-align: center;
 }
+
 
 /* mychart */
 .chart-container {
@@ -53,23 +71,27 @@ img{
   margin-left: 2em;
   margin-right: 4em;
 }
-
 /* contact form */
-form{
+form {
   width: 50%;
+  /* margin: 2em; */
 }
+/* contact form messagebox */
+#inputMessage {
+  resize: none;
+}
+
 /* style title */
-#title-crypto{
+#title-crypto {
   padding-left: 1em;
 }
-
 /* cards style */
 .card-example {
   position: relative;
   background-color: #fff;
-  width: 300px;
+  /* width: 300px;
   height: 350px;
-  padding: 3px;
+  padding: 3px; */
 }
 
 .card-example img {
@@ -80,22 +102,121 @@ form{
 .card-example span.title {
   display: inline-block;
   position: absolute;
-  bottom: 140px;
+  /* padding-top: 2em; */
   left: 20px;
 }
 
-.card-example .label {
+/* .card-example .label {
   padding: 25px 25px 0;
-}
+} */
 
-/* footer */
 footer {
   margin-top: 10em;
   box-sizing: border-box;
   height: 70px;
   background-color: #eee;
+  /* border-top: 1px solid #e0e0e0; */
   padding-top: 20px;
 }
 
+@media (min-width: 468px){
+  #description{
+    float: left;
+  }
+}
+
+.fa-bitcoin {
+  color: goldenrod;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/* Wasn't sure why this was added, but it was being applied to all <p> divs globally */
+/* p {
+  max-width: 750px;
+} */
+
+.mui-footer {
+  /* padding-bottom: 20px; */
+  width: 500px;
+}
+
+.mui-divider {
+  text-align: center;
+}
+.aGithub {
+  padding-bottom: 20px;
+}
+
+/* modal */
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-header{
+text-align: center;
+background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+border-radius: 20px 20px 0px 0px;
+padding:10px;
+color: goldenrod;
+}
+
+.modal-footer{
+  text-align: center;
+  padding: 0px 0px 15px 0px;
+  margin: 0;
+  color: #ccc;
+}
+.modal-dates{
+  float: right;
+  color: #ccc;
+}
+
+#modal-body{
+  position: relative;
+  z-index: 2;
+  width: 75%;
+  background-color: honeydew;
+  border-radius: 20px;
+  margin: 10% auto;
+}
+
+#modal-links{
+  padding: 25px;
+}
+
+#close-modal{
+  float: right;
+  color: #ccc;
+  font-size: 25px;
+}
+#close-modal:hover{
+  color: black;
+  cursor: pointer;
+}
 
 
+/*
+.aCoin {
+  float: middle;
+  text-align: center;
+}
+
+.aNY {
+  float: right;
+} */
+
+/* .fa-github:hover + .spanGithub {
+  font-size: 3rem;
+  display: inline-block;
+} */
