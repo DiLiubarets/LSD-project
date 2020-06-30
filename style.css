@@ -14,23 +14,27 @@ img {
   width: 70px;
   height: 70px;
 }
-.mui-appbar header {
+
+/* navbar header */
+header {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
-header ul.mui-list--inline {
-  margin-bottom: 0;
+ul.mui-list--inline {
+  margin-bottom: -5em;
+  margin-right: 3em;
+  font-size: 20px;
 }
 
-.mui-appbar header a {
+header a {
   color: white;
 }
 
-.mui-appbar header table {
+header table {
   width: 100%;
 }
 
@@ -66,8 +70,9 @@ header ul.mui-list--inline {
 .chart-container {
   margin-left: 3em;
 }
+
 #mui-row {
-  margin-top: 2em;
+  margin-top: 5em;
   margin-left: 2em;
   margin-right: 4em;
 }
