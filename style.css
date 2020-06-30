@@ -14,28 +14,32 @@ img {
   width: 70px;
   height: 70px;
 }
-.mui-appbar header {
+
+/* navbar header */
+header {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
-header ul.mui-list--inline {
-  margin-bottom: 0;
+ul.mui-list--inline {
+  margin-bottom: -5em;
+  margin-right: 3em;
+  font-size: 20px;
 }
 
-.mui-appbar header a {
+header a {
   color: white;
 }
 
-.mui-appbar header table {
+header table {
   width: 100%;
 }
 
 /* dropdown menu */
-.mui-btn {
+.mui-btn--primary {
   background-image: linear-gradient(
     to top,
     #09203f 0%,
@@ -66,8 +70,9 @@ header ul.mui-list--inline {
 .chart-container {
   margin-left: 3em;
 }
+
 #mui-row {
-  margin-top: 2em;
+  margin-top: 5em;
   margin-left: 2em;
   margin-right: 4em;
 }
@@ -105,12 +110,6 @@ header ul.mui-list--inline {
 }
 
 
-@media (min-width: 468px){
-  #description{
-    float: left;
-  }
-}
-
 .fa-bitcoin {
   color: goldenrod;
 }
@@ -125,6 +124,11 @@ ul {
 }
 .aGithub {
   padding-bottom: 20px;
+}
+
+/* responsive navbar menu */
+#smallScreen{
+  margin-right: 5em;
 }
 
 /* modal */
@@ -194,4 +198,23 @@ footer {
   padding-top: 20px;
 }
 
+@media (min-width: 468px){
+  #description{
+    float: left;
+  }
+}
+
+@media(max-width: 720px){
+  #bigScreen{
+    display: none;
+  }
+  #smallScreen{
+    display:block
+  }
+}
+@media(min-width:720px){
+  #smallScreen{
+    display:none;
+  }
+}
 
