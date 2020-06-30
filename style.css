@@ -216,7 +216,6 @@ color: goldenrod;
   float: right;
 } */
 
-/* .fa-github:hover + .spanGithub {
-  font-size: 3rem;
-  display: inline-block;
-} */
+.fa-github{
+  padding-top: 20px;
+}
