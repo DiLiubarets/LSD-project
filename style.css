@@ -2,6 +2,19 @@
 body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
+
+/* standard button styling  */
+.mui-btn {
+  background-image: linear-gradient(
+    to top,
+    #09203f 0%,
+    #537895 100%
+  ) !important;
+  padding-left: 2em;
+}
+.mui-btn a:hover{
+  color:honeydew;
+}
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -17,6 +30,10 @@ img {
 #smallScreen{
   margin-right: 1em;
   color:goldenrod;
+  font-size: 20px;
+}
+#smallScreen:hover{
+  cursor: pointer;
 }
 
 
@@ -80,6 +97,10 @@ header table {
   margin-top: 5em;
 }
 
+/* CryptoNews */
+#crypto-news{
+  margin-top: 3em;
+}
 
 /* cards style */
 .card-example {
@@ -135,6 +156,7 @@ text-align: center;
 background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 border-radius: 20px 20px 0px 0px;
 padding:10px;
+padding-bottom: 25px;
 color: goldenrod;
 }
 
@@ -151,7 +173,7 @@ color: goldenrod;
 
 #modal-body{
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 75%;
   background-color: honeydew;
   border-radius: 20px;
