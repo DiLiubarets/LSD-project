@@ -31,15 +31,17 @@
     <header class="mui-appbar">
       <table>
         <tr class="mui--appbar-height">
-          <td class="mui--text-title">
-            <img
+          <td class="mui--appbar-height mui--text-title">
+            <ul class="mui-list--inline">
+           <li><img
               src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/15664219991579250992-512.png"
               alt=""
-            />
-            <div id="title-crypto" class="mui--text-display3">LSD</div>
+            /></li> 
+            <li class="mui--text-display3">LSD</li>
+            </ul>
           </td>
           <td class="mui--text-right">
-            <ul class="mui-list--inline mui--text-body2" id="bigScreen">
+            <ul class="mui-list--inline mui--text-subhead" id="bigScreen">
               <li>
                 <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
               </li>
@@ -47,16 +49,16 @@
                 <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
               </li>
               <li>
-                <a href="#about-project"><span class="mui-text mui-caret--right">About project</span></a>
+                <a href="#about-project"><span class="mui-text mui-caret--right">About LSD</span></a>
               </li>
               <li>
-                <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
+                <a href="#crypto-news"><span class="mui-text mui-caret--right">News</span></a>
               </li>
             </ul>
-            <div class="mui-dropdown" id="smallScreen">
-              <button class="mui-btn" data-mui-toggle="dropdown">
-                <i class="fa fa-bars"> Menu</i>
-                </button>
+            <div class="mui-dropdown mui-dropdown--left" id="smallScreen">
+              <span data-mui-toggle="dropdown">
+                <i class="fa fa-bars"> </i>
+              </span>
               <ul id="siteNav" class="mui-dropdown__menu">
                 <li>
                   <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
@@ -65,10 +67,10 @@
                   <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
                 </li>
                 <li>
-                  <a href="#about-project"><span class="mui-text mui-caret--right">About project</span></a>
+                  <a href="#about-project"><span class="mui-text mui-caret--right">About LSD</span></a>
                 </li>
                 <li>
-                  <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
+                  <a href="#crypto-news"><span class="mui-text mui-caret--right">News</span></a>
                 </li>
               </ul>
             </div>
@@ -76,12 +78,8 @@
         </tr>
       </table>
     </header>
-    <br/>
-    <br/>
-    <br/><br /><br /><br />
 
      <!-- news headlines modal -->
-
      <div class="modal" id="newsModal">
       <div class="modal-content" id="modal-body">
         <div class="modal-header"><span id="close-modal">&times;</span>
@@ -94,7 +92,6 @@
     </div>
 
     <!-- Chart with coin price  -->
-
     <div class="mui-row" id="mui-row">
       <div class="mui-col-md-8">
         <div class="mui-panel">
@@ -104,7 +101,6 @@
               data-aos-easing="ease-out-cubic"
               data-aos-duration="2000"
               id="myChart"
-              style="background-color: #;"
             ></canvas>
           </div>
         </div>
@@ -117,7 +113,7 @@
           <span id="realTimePrice" class="mui--text-title">Live price:</span
           ><br />
           <span id="average" class="mui--text-title"
-            ><i class="fa fa-bar-chart" aria-hidden="true"></i> average:</span
+            ><i class="fa fa-bar-chart" aria-hidden="true"></i> Average:</span
           ><br />
           <!-- dropdown menu with coin names -->
           <div class="mui-dropdown">
@@ -169,8 +165,6 @@
       </div>
     </div>
 
-
-    
     <!-- cards for learn -->
     <div
       id="crypto-news"
@@ -300,7 +294,7 @@
     
       <div id="about-project" class="mui-container mui--text-left">
         <div class="mui--text-body2">
-          <h3><strong>About LSD</strong></h3>
+          <h3 class="mui--text-display3">About LSD</h3>
           <p> LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. 
             Whether you are a professional investor or an amateur enthusiast, 
             LSD provides all the necessary tools to grab the market bull by its horns.
@@ -310,13 +304,16 @@
               <li><i class="fa fa-bitcoin"></i> Relax by subscribing to our notification system emailing you of changing trends</li>
               <li><i class="fa fa-bitcoin"></i> View how your crypto stacks up against the competition by staying informed through our news section</li>
             </ul>  
-            Powered by CoinCap and NY Times, LSD brings you accurate performance statistics for free!
+            Powered by CoinCap and NewsAPI, LSD brings you accurate performance statistics for free!
           </p>
+          <h4 >On project work:
+            <a href="https://github.com/liam-mack"><h2>L</h2>iam <i class="fa fa-github" aria-hidden="true" ></i ></a>
+              <a href="https://github.com/shamik05"><h2>S</h2>hamik <i class="fa fa-github" aria-hidden="true" ></i> </a>
+                <a href="https://github.com/DiLiubarets"><h2>D</h2>ina<i class="fa fa-github"  aria-hidden="true"></i></a>
+          </h4>
         </div>
       </div> 
-    
-     
-
+  
       <hr>
         <!-- contact us form -->
         <div class="mui-panel" id="contact-us">
