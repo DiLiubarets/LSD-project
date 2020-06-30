@@ -14,11 +14,10 @@ img {
   height: 70px;
 }
 /* responsive navbar menu */
-#smallScreen{
+#smallScreen {
   margin-right: 1em;
-  color:goldenrod;
+  color: goldenrod;
 }
-
 
 ul.mui-list--inline {
   margin-right: 3em;
@@ -52,14 +51,14 @@ header table {
 }
 .mui-dropdown__menu li:hover {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-  color:white;
-  cursor:context-menu;
+  color: white;
+  cursor: context-menu;
 }
 /* padding inside drop-douwn */
-#timeDropdown,  #currentCoin{
+#timeDropdown,
+#currentCoin {
   text-align: center;
 }
-
 
 /* mychart */
 .chart-container {
@@ -80,7 +79,6 @@ header table {
   margin-top: 5em;
 }
 
-
 /* cards style */
 .card-example {
   position: relative;
@@ -98,7 +96,6 @@ header table {
   left: 20px;
 }
 
-
 .fa-bitcoin {
   color: goldenrod;
 }
@@ -107,7 +104,6 @@ ul {
   padding-left: 0;
 }
 
-
 .mui-divider {
   text-align: center;
 }
@@ -115,10 +111,8 @@ ul {
   padding-bottom: 20px;
 }
 
-
-
 /* modal */
-.modal{
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -127,29 +121,29 @@ ul {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-header{
-text-align: center;
-background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-border-radius: 20px 20px 0px 0px;
-padding:10px;
-color: goldenrod;
+.modal-header {
+  text-align: center;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px;
+  color: goldenrod;
 }
 
-.modal-footer{
+.modal-footer {
   text-align: center;
   padding: 0px 0px 15px 0px;
   margin: 0;
   color: #ccc;
 }
-.modal-dates{
+.modal-dates {
   float: right;
   color: #ccc;
 }
 
-#modal-body{
+#modal-body {
   position: relative;
   z-index: 2;
   width: 75%;
@@ -158,27 +152,24 @@ color: goldenrod;
   margin: 10% auto;
 }
 
-#modal-links{
+#modal-links {
   padding: 25px;
 }
-
-#close-modal{
+#close-modal {
   float: right;
   color: #ccc;
   font-size: 25px;
 }
-#close-modal:hover{
+#close-modal:hover {
   color: black;
   cursor: pointer;
 }
-
-
-h2{
+h2 {
   display: inline !important;
-  color:goldenrod;
+  color: goldenrod;
   padding-left: 1em;
 }
-h4 a{
+h4 a {
   color: black;
 }
 button a {
@@ -194,19 +185,16 @@ footer {
   padding-top: 20px;
 }
 
-
-
-@media(max-width: 720px){
-  #bigScreen{
+@media (max-width: 720px) {
+  #bigScreen {
     display: none;
   }
-  #smallScreen{
-    display:block
+  #smallScreen {
+    display: block;
   }
 }
-@media(min-width:720px){
-  #smallScreen{
-    display:none;
+@media (min-width: 720px) {
+  #smallScreen {
+    display: none;
   }
 }
-
