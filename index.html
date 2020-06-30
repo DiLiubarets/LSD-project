@@ -1,158 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LSD crypto project</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <!-- aos animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <!-- load MUI -->
-    <link
-      href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
-  </head>
 
-  <body id="body">
-    <!-- appbar -->
-    <header class="mui-appbar">
-      <table>
-        <tr class="mui--appbar-height">
-          <td class="mui--text-title">
-            <img
-              src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/15664219991579250992-512.png"
-              alt=""
-            />
-            <div id="title-crypto" class="mui--text-display3">LSD</div>
-          </td>
-          <td class="mui--text-right">
-            <ul class="mui-list--inline mui--text-body2">
-              <li>
-                <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
-              </li>
-              <li>
-                <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
-              </li>
-              <li>
-                <a href="#about-project"><span class="mui-text mui-caret--right">About project</span></a>
-              </li>
-              <li>
-                <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </table>
-    </header>
-    <br />
-    <br />
-    <br /><br /><br /><br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LSD crypto project</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+  <!-- moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <!-- aos animation -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- load MUI -->
+  <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+</head>
 
- <!-- news headlines modal -->
+<body id="body">
+  <!-- appbar -->
+  <header class="mui-appbar">
+    <table>
+      <tr class="mui--appbar-height">
+        <td class="mui--text-title">
+          <img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/15664219991579250992-512.png"
+            alt="" />
+          <div id="title-crypto" class="mui--text-display3">LSD</div>
+        </td>
+        <td class="mui--text-right">
+          <ul class="mui-list--inline mui--text-body2">
+            <li>
+              <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
+            </li>
+            <li>
+              <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
+            </li>
+            <li>
+              <a href="#about-project"><span class="mui-text mui-caret--right">About project</span></a>
+            </li>
+            <li>
+              <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </header>
+  <br />
+  <br />
+  <br /><br /><br /><br />
 
- <div class="modal" id="newsModal">
-  <div class="modal-content" id="modal-body">
-    <div class="modal-header"><span id="close-modal">&times;</span>
-    <h2>News Articles</h2>
-    </div>
-    <p id="modal-links"></p>
-    <div class="modal-footer">Google News API
+  <!-- news headlines modal -->
+
+  <div class="modal" id="newsModal">
+    <div class="modal-content" id="modal-body">
+      <div class="modal-header"><span id="close-modal">&times;</span>
+        <h2>News Articles</h2>
+      </div>
+      <p id="modal-links"></p>
+      <div class="modal-footer">Google News API
+      </div>
     </div>
   </div>
-</div>
 
-    <!-- Chart with coin price  -->
+  <!-- Chart with coin price  -->
 
-    <div class="mui-row" id="mui-row">
-      <div class="mui-col-md-8">
-        <div class="mui-panel">
-          <div class="mui-container">
-            <canvas
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration="2000"
-              id="myChart"
-              style="background-color: #;"
-            ></canvas>
-          </div>
-        </div>
-      </div>
-
-      <!-- dropdown menu with time candle and coin name -->
-      <div class="mui-col-md-4">
-        <div class="mui-panel">
-          <!-- real life price  -->
-          <span id="realTimePrice" class="mui--text-title">Live price:</span
-          ><br />
-          <span id="average" class="mui--text-title"
-            ><i class="fa fa-bar-chart" aria-hidden="true"></i> average:</span
-          ><br />
-          <!-- dropdown menu with coin names -->
-          <div class="mui-dropdown">
-            <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-              <i class="fa fa-btc" aria-hidden="true"> Coins</i>
-
-              <span class="mui-caret"></span>
-            </button>
-            <ul id="currentCoin" class="mui-dropdown__menu">
-              <li id="bitcoin">Bitcoin</li>
-              <li id="ethereum">Ethereum</li>
-              <li id="dash">Dash</li>
-              <li id="eos">Eos</li>
-              <li id="bitcoin-cash">Bitcoin-cash</li>
-              <li id="waves">Waves</li>
-              <li id="litecoin">Litecoin</li>
-              <li id="binance-coin">Binance-coin</li>
-            </ul>
-          </div>
-          
-          <!-- dropdown menu with time candles -->
-          <div class="mui-dropdown">
-            <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-              <i class="fa fa-bar-chart" aria-hidden="true">Time</i>
-              <span class="mui-caret"></span>
-            </button>
-
-            <ul class="mui-dropdown__menu" id="timeDropdown">
-              <li id="m1" value="1">1 min</li>
-              <li id="m5" value="5">5 min</li>
-              <li id="m15" value="15">15 min</li>
-              <li id="m30" value="30">30 min</li>
-              <li id="h1" value="60">1h</li>
-              <li id="h2" value="120">2h</li>
-              <li id="h6" value="360">6h</li>
-              <li id="h12" value="720">12h</li>
-              <li id="d1" value="1440">1 day</li>
-            </ul>
-          </div>  
-           <div class="mui-btn mui-btn--primary" id="newsBtn">
-            <i class="fa" aria-hidden="true">Headlines</i>
-          </div>
-        </div>
-        <div class="mui-panel">
-          <div class="mui--text-body2">
-            <div class="mui--text" id="description"></div>
-          </div>
+  <div class="mui-row" id="mui-row">
+    <div class="mui-col-md-8">
+      <div class="mui-panel">
+        <div class="mui-container">
+          <canvas data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000" id="myChart"
+            style="background-color: #;"></canvas>
         </div>
       </div>
     </div>
 
-    <!-- contact us form -->
-    <div id="contact-us">
-    <div  class="mui-container">
+    <!-- dropdown menu with time candle and coin name -->
+    <div class="mui-col-md-4">
+      <div class="mui-panel">
+        <!-- real life price  -->
+        <span id="realTimePrice" class="mui--text-title">Live price:</span><br />
+        <span id="average" class="mui--text-title"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+          average:</span><br />
+        <!-- dropdown menu with coin names -->
+        <div class="mui-dropdown">
+          <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+            <i class="fa fa-btc" aria-hidden="true"> Coins</i>
+
+            <span class="mui-caret"></span>
+          </button>
+          <ul id="currentCoin" class="mui-dropdown__menu">
+            <li id="bitcoin">Bitcoin</li>
+            <li id="ethereum">Ethereum</li>
+            <li id="dash">Dash</li>
+            <li id="eos">Eos</li>
+            <li id="bitcoin-cash">Bitcoin-cash</li>
+            <li id="waves">Waves</li>
+            <li id="litecoin">Litecoin</li>
+            <li id="binance-coin">Binance-coin</li>
+          </ul>
+        </div>
+
+        <!-- dropdown menu with time candles -->
+        <div class="mui-dropdown">
+          <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+            <i class="fa fa-bar-chart" aria-hidden="true">Time</i>
+            <span class="mui-caret"></span>
+          </button>
+
+          <ul class="mui-dropdown__menu" id="timeDropdown">
+            <li id="m1" value="1">1 min</li>
+            <li id="m5" value="5">5 min</li>
+            <li id="m15" value="15">15 min</li>
+            <li id="m30" value="30">30 min</li>
+            <li id="h1" value="60">1h</li>
+            <li id="h2" value="120">2h</li>
+            <li id="h6" value="360">6h</li>
+            <li id="h12" value="720">12h</li>
+            <li id="d1" value="1440">1 day</li>
+          </ul>
+        </div>
+        <div class="mui-btn mui-btn--primary" id="newsBtn">
+          <i class="fa" aria-hidden="true">Headlines</i>
+        </div>
+      </div>
+      <div class="mui-panel">
+        <div class="mui--text-body2">
+          <div class="mui--text" id="description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- news cards-->
+  <div id="crypto-news" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <div id="title-crypto" class="mui--text-display3">Crypto</div>
+    <br />
+    <div class="mui--text-display4">NEWS</div>
+  </div>
+  <div class="mui-container">
+    <div class="mui-row">
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img0" alt="" />
+          <div class="label">
+            <br />
+            <div id="title0" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des0"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button0">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img1" alt="" />
+          <div class="label">
+            <br />
+            <div id="title1" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des1"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button1">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img2" alt="" />
+          <div class="label">
+            <br />
+            <div id="title2" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des2"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button2">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="mui-row">
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img3" alt="" />
+          <div class="label">
+            <br />
+            <div id="title3" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des3"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button3">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img4" alt="" />
+          <div class="label">
+            <br />
+            <div id="title4" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des4"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button4">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div data-aos="zoom-in-down" class="mui-col-md-4">
+        <div class="card-example mui--text-center mui--z1">
+          <img id="card-img5" alt="" />
+          <div class="label">
+            <br />
+            <div id="title5" class="title mui--text-dark mui--text-headline"></div>
+            <br />
+            <div class="mui--text" id="des5"></div>
+            <button class="mui-btn mui-btn--flat">
+              <a id="link-button5">Explore</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+  <br />
+
+  <div id="about-project" class="mui-container mui--text-left">
+    <div class="mui--text-body2">
+      <h3><strong>About LSD</strong></h3>
+      <p> LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders.
+        Whether you are a professional investor or an amateur enthusiast,
+        LSD provides all the necessary tools to grab the market bull by its horns.
+      <ul style="list-style-type:none;">
+        <li><i class="fa fa-bitcoin"></i> Track real-time prices to outmaneuver your opposition</li>
+        <li><i class="fa fa-bitcoin"></i> Predict the future with our database of historical prices</li>
+        <li><i class="fa fa-bitcoin"></i> Relax by subscribing to our notification system emailing you of changing
+          trends</li>
+        <li><i class="fa fa-bitcoin"></i> View how your crypto stacks up against the competition by staying informed
+          through our news section</li>
+      </ul>
+      Powered by CoinCap and NY Times, LSD brings you accurate performance statistics for free!
+      </p>
+    </div>
+  </div>
+
+
+
+  <hr>
+  <!-- contact us form -->
+  <div class="mui-panel" id="contact-us">
+    <div class="mui-container">
       <form class="mui-form" id="contact-form">
         <legend>Contact Us</legend>
         <div class="mui-textfield mui-textfield--float-label">
@@ -175,170 +288,15 @@
     </div>
   </div>
 
-    <br />
-
-    
-    <!-- cards for learn -->
-    <div
-      id="crypto-news"
-      data-aos="fade-up"
-      data-aos-anchor-placement="top-bottom"
-    >
-      <div id="title-crypto" class="mui--text-display3">Crypto</div>
-      <br />
-      <div class="mui--text-display4">NEWS</div>
+  <!-- footer  -->
+  <footer>
+    <div class="mui-container mui--text-center mui--text-bottom">
+      <a href="https://github.com/DiLiubarets/project-1">
+        View project code on Github<br /><i class="fa fa-github" aria-hidden="true"></i></a>
     </div>
-    <div class="mui-container">
-      <div class="mui-row">
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img0" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title0"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des0"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button0">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img1" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title1"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des1"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button1">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img2" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title2"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des2"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button2">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="mui-row">
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img3" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title3"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des3"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button3">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img4" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title4"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des4"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button4">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div data-aos="zoom-in-down" class="mui-col-md-4">
-          <div class="card-example mui--text-center mui--z1">
-            <img id="card-img5" alt="" />
-            <div class="label">
-              <br />
-              <div
-                id="title5"
-                class="title mui--text-dark mui--text-headline"
-              ></div>
-              <br />
-              <div class="mui--text" id="des5"></div>
-              <button class="mui-btn mui-btn--flat">
-                <a id="link-button5">Explore</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-      </div>
-    </div>
-    <br />
-    <!-- footer -->
-    <footer>
-      <div id="about-project" class="mui-container mui--text-left">
-        <div class="mui--text-body2">
-          <h3><strong>About LSD</strong></h3>
-          <p>
-            LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. 
-            Whether you are a professional investor or an amateur enthusiast, 
-            LSD provides all the necessary tools to grab the market bull by its horns.
-            <ul style="list-style-type:none;">
-              <li><i class="fa fa-bitcoin"></i> Track real-time prices to outmaneuver your opposition</li>
-              <li><i class="fa fa-bitcoin"></i> Predict the future with our database of historical prices</li>
-              <li><i class="fa fa-bitcoin"></i> Relax by subscribing to our notification system emailing you of changing trends</li>
-              <li><i class="fa fa-bitcoin"></i> View how your crypto stacks up against the competition by staying informed through our news section</li>
-            </ul>  
-            Powered by CoinCap and NY Times, LSD brings you accurate performance statistics for free!
-          </p>
-        </div>
-      <!-- </div> -->
-      <!-- <div class="mui-container mui-footer mui--text-center mui--text-bottom"> -->
-        <div class="mui-divider">
-        <a class="aGithub" href="https://github.com/DiLiubarets/project-1">
-          <i class="fa fa-github" aria-hidden="true"></i> View Project Code on Github
-        </a>
-        <!-- <a class="aCoin" href="https://docs.coincap.io/?version=latest">
-          <img src="coincap-logo-grey.jpg" style="width: 200px">
-          View API on CoinCap
-        </a> -->
-        <!-- <a class="aNY" href="https://developer.nytimes.com/">
-          View API on NYTimes
-        </a> -->
-        </div>
-      </div>
-    </footer>
+  </footer>
+  <!-- script.js -->
+  <script src="myChart.js" type="text/javascript"></script>
+</body>
 
-    <!-- script.js -->
-    <script src="myChart.js" type="text/javascript"></script>
-  </body>
 </html>
