@@ -72,9 +72,15 @@ header ul.mui-list--inline {
   margin-right: 4em;
 }
 
-/* contact form messagebox */
+/* contact form */
 #inputMessage {
   resize: none;
+}
+#contact-us {
+  
+  width: 50%;
+  margin: auto;
+  margin-top: 5em;
 }
 
 /* style title */
@@ -85,9 +91,6 @@ header ul.mui-list--inline {
 .card-example {
   position: relative;
   background-color: #fff;
-  /* width: 300px;
-  height: 350px;
-  padding: 3px; */
 }
 
 .card-example img {
@@ -98,23 +101,9 @@ header ul.mui-list--inline {
 .card-example span.title {
   display: inline-block;
   position: absolute;
-  /* padding-top: 2em; */
   left: 20px;
 }
 
-/* .card-example .label {
-  padding: 25px 25px 0;
-} */
-
-footer {
-  /* margin-top: 10em;
-  box-sizing: border-box;
-  height: 70px;
-  background-color: #eee;
-  border-top: 1px solid #e0e0e0;
-  padding-top: 20px; */
-  width: 100%;
-}
 
 @media (min-width: 468px){
   #description{
@@ -130,15 +119,6 @@ ul {
   padding-left: 0;
 }
 
-/* Wasn't sure why this was added, but it was being applied to all <p> divs globally */
-/* p {
-  max-width: 750px;
-} */
-
-.mui-footer {
-  /* padding-bottom: 20px; */
-  width: 500px;
-}
 
 .mui-divider {
   text-align: center;
@@ -202,20 +182,16 @@ color: goldenrod;
   cursor: pointer;
 }
 
-#contact-us {
-  width: 50%;
-}
 
-/*
-.aCoin {
-  float: middle;
-  text-align: center;
-}
 
-.aNY {
-  float: right;
-} */
-
-.fa-github{
+/* footer */
+footer {
+  margin-top: 5em;
+  box-sizing: border-box;
+  height: 70px;
+  width: 100%;
+  background-color: #eee;
   padding-top: 20px;
 }
+
+
