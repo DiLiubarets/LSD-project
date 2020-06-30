@@ -7,27 +7,22 @@ body {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 .mui--text-title {
-  padding-left: 2em;
   color: goldenrod;
 }
 img {
   width: 70px;
   height: 70px;
 }
-
-/* navbar header */
-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
+/* responsive navbar menu */
+#smallScreen{
+  margin-right: 1em;
+  color:goldenrod;
 }
 
+
 ul.mui-list--inline {
-  margin-bottom: -5em;
   margin-right: 3em;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 header a {
@@ -72,26 +67,20 @@ header table {
 }
 
 #mui-row {
-  margin-top: 5em;
+  margin-top: 2em;
   margin-left: 2em;
   margin-right: 4em;
 }
 
 /* contact form */
-#inputMessage {
-  resize: none;
-}
+
 #contact-us {
-  
   width: 50%;
   margin: auto;
   margin-top: 5em;
 }
 
-/* style title */
-#title-crypto {
-  padding-left: 1em;
-}
+
 /* cards style */
 .card-example {
   position: relative;
@@ -126,10 +115,7 @@ ul {
   padding-bottom: 20px;
 }
 
-/* responsive navbar menu */
-#smallScreen{
-  margin-right: 5em;
-}
+
 
 /* modal */
 .modal{
@@ -187,7 +173,17 @@ color: goldenrod;
 }
 
 
-
+h2{
+  display: inline !important;
+  color:goldenrod;
+  padding-left: 1em;
+}
+h4 a{
+  color: black;
+}
+button a {
+  color: black;
+}
 /* footer */
 footer {
   margin-top: 5em;
@@ -198,11 +194,7 @@ footer {
   padding-top: 20px;
 }
 
-@media (min-width: 468px){
-  #description{
-    float: left;
-  }
-}
+
 
 @media(max-width: 720px){
   #bigScreen{
