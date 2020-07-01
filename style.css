@@ -1,6 +1,7 @@
 /* body css */
 body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  font-size: 16px;
 }
 /* app-bar  */
 .mui-appbar {
@@ -10,6 +11,7 @@ body {
   padding-left: 2em;
   color: goldenrod;
 }
+
 img {
   width: 70px;
   height: 70px;
@@ -39,27 +41,25 @@ header table {
 }
 
 /* dropdown menu */
-.mui-btn {
-  background-image: linear-gradient(
-    to top,
-    #09203f 0%,
-    #537895 100%
-  ) !important;
+.mui-btn--primary {
   padding-left: 2em;
 }
+
 #dropDown-menu {
   margin-left: 65%;
   padding-left: 1em;
 }
 .mui-btn--flat,
 #submitEmail {
-  color: honeydew;
+  color: #ffffff;
 }
+
 .mui-dropdown__menu li:hover {
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background: linear-gradient(to top, #09203f 0%, #537895 100%);
   color:white;
   cursor:context-menu;
 }
+
 /* padding inside drop-douwn */
 #timeDropdown,  #currentCoin{
   text-align: center;
@@ -78,14 +78,22 @@ header table {
 }
 
 /* contact form */
+#inputName, #inputEmail, #inputMessage {
+  font-size: 1rem;
+}
 #inputMessage {
   resize: none;
 }
 #contact-us {
-  
   width: 50%;
   margin: auto;
   margin-top: 5em;
+  border-radius: 15px;
+}
+
+#contact-form legend {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* style title */
@@ -109,11 +117,8 @@ header table {
   left: 20px;
 }
 
-
-@media (min-width: 468px){
-  #description{
-    float: left;
-  }
+a {
+  font-weight: 800;
 }
 
 .fa-bitcoin {
@@ -124,12 +129,13 @@ ul {
   padding-left: 0;
 }
 
-
-.mui-divider {
-  text-align: center;
-}
 .aGithub {
   padding-bottom: 20px;
+}
+
+/* responsive navbar menu */
+#smallScreen{
+  margin-right: 5em;
 }
 
 /* modal */
@@ -187,6 +193,13 @@ color: goldenrod;
   cursor: pointer;
 }
 
+/* About LSD */
+.mui--text-body2 h3 {
+  font-weight: 750;
+}
+#about-project {
+  font-size: 1rem;
+}
 
 
 /* footer */
@@ -199,4 +212,83 @@ footer {
   padding-top: 20px;
 }
 
+@media (min-width: 468px){
+  #description{
+    float: left;
+  }
+}
 
+@media(max-width: 720px){
+  #bigScreen{
+    display: none;
+  }
+  #smallScreen{
+    display:block;
+    top: 10px;
+  }
+}
+
+@media(min-width:720px){
+  #smallScreen{
+    display:none;
+    border-radius: 50px;
+    background-color: #09203f;
+  }
+}
+
+/* Dark Mode Button */
+.theme-switch-wrapper {
+  display:flex ;
+  position: absolute;
+  right: 1%;
+  bottom: 30%;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #818cab;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

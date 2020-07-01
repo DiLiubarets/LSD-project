@@ -39,7 +39,7 @@
             <div id="title-crypto" class="mui--text-display3">LSD</div>
           </td>
           <td class="mui--text-right">
-            <ul class="mui-list--inline mui--text-body2">
+            <ul class="mui-list--inline mui--text-body2" id="bigScreen">
               <li>
                 <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
               </li>
@@ -52,7 +52,38 @@
               <li>
                 <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
               </li>
+              <li>
+                
+              </li>
             </ul>
+            <div id="checkboxWrapper" class="theme-switch-wrapper">
+                  <label class="theme-switch" for="checkbox">
+                      <input type="checkbox" id="checkbox" />
+                      <div class="slider round"></div>
+                </label>
+              </div>
+            <div class="mui-dropdown" id="smallScreen">
+              <button class="mui-btn" id="test" data-mui-toggle="dropdown">
+                <i class="fa fa-bars"> Menu</i>
+                </button>
+              <ul id="siteNav" class="mui-dropdown__menu">
+                <li>
+                  <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
+                </li>
+                <li>
+                  <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
+                </li>
+                <li>
+                  <a href="#about-project"><span class="mui-text mui-caret--right">About project</span></a>
+                </li>
+                <li>
+                  <a href="#crypto-news"><span class="mui-text mui-caret--right">Crypto News</span></a>
+                </li>
+                <li>
+                  <a href="#checkbox"><span class="mui-text mui-caret--right">Dark Mode</span></a>
+                </li>
+              </ul>
+            </div>
           </td>
         </tr>
       </table>
@@ -62,7 +93,6 @@
     <br/><br /><br /><br />
 
      <!-- news headlines modal -->
-
      <div class="modal" id="newsModal">
       <div class="modal-content" id="modal-body">
         <div class="modal-header"><span id="close-modal">&times;</span>
@@ -75,7 +105,6 @@
     </div>
 
     <!-- Chart with coin price  -->
-
     <div class="mui-row" id="mui-row">
       <div class="mui-col-md-8">
         <div class="mui-panel">
@@ -85,7 +114,6 @@
               data-aos-easing="ease-out-cubic"
               data-aos-duration="2000"
               id="myChart"
-              style="background-color: #;"
             ></canvas>
           </div>
         </div>
@@ -101,10 +129,9 @@
             ><i class="fa fa-bar-chart" aria-hidden="true"></i> average:</span
           ><br />
           <!-- dropdown menu with coin names -->
-          <div class="mui-dropdown">
+          <div id="coinMenu" class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
               <i class="fa fa-btc" aria-hidden="true"> Coins</i>
-
               <span class="mui-caret"></span>
             </button>
             <ul id="currentCoin" class="mui-dropdown__menu">
@@ -150,14 +177,12 @@
       </div>
     </div>
 
-
-    
     <!-- cards for learn -->
     <div
       id="crypto-news"
       data-aos="fade-up"
       data-aos-anchor-placement="top-bottom"
-    >
+    > 
       <div id="title-crypto" class="mui--text-display3">Crypto</div>
       <br />
       <div class="mui--text-display4">NEWS</div>
@@ -279,9 +304,9 @@
     <br />
    
     
-      <div id="about-project" class="mui-container mui--text-left">
-        <div class="mui--text-body2">
-          <h3><strong>About LSD</strong></h3>
+      <div  class="mui-container mui--text-left">
+        <div id="about-project" class="mui--text-body2">
+          <h3>About LSD</h3>
           <p> LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. 
             Whether you are a professional investor or an amateur enthusiast, 
             LSD provides all the necessary tools to grab the market bull by its horns.
@@ -296,14 +321,12 @@
         </div>
       </div> 
     
-     
-
       <hr>
         <!-- contact us form -->
         <div class="mui-panel" id="contact-us">
         <div class="mui-container">
             <form class="mui-form" id="contact-form">
-              <legend>Contact Us</legend>
+              <legend>CONTACT US</legend>
               <div class="mui-textfield mui-textfield--float-label">
                 <input id="inputName" type="text" required />
                 <label>Name</label>
@@ -323,8 +346,6 @@
             </form>
         </div>
         </div>
-       
-        
 
        <!-- footer  -->
     <footer>
