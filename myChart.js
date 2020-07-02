@@ -361,78 +361,6 @@ $(window).on("click", function(event){
     }
 })
 
-// Dark Mode switch
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-function darkMode(e) {
-    if (toggleSwitch.checked) {
-      $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
-      $("#body").css("color","white");
-      $(".mui-panel").css("background","#0a0d18d6");
-      $(".card-example ").css("background","#0a0d18d6");
-      $(".mui--text-dark").css("color","white");
-      $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
-      $("#contact-form>legend").css("color","white");
-      $("#body>footer").css("background","black");
-      Chart.defaults.global.defaultFontColor="white";
-      massPopChart.options.legend.labels.fontColor="white";
-      massPopChart.options.scales.yAxes[0].gridLines.color="white";
-      massPopChart.options.title.fontColor="gold";
-      $(".mui--text-title").css("color","gold");
-      $(".mui--text-headline").css("color","#818cab");
-      $(".mui-dropdown__menu").css("background","linear-gradient(153deg, rgba(78,11,117,1) 17%, rgba(128,0,128,1) 62%, rgba(255,243,0,1) 93%)");
-      $(".mui-btn--primary").css("background-color","#4e0b75")
-      $("#submitEmail").css("background-color","#4e0b75")
-      $("#siteNav").css("background", "");
-      
-      $(".mui-dropdown__menu li").mouseover(function(){
-        $(this).css("background","#E3B93B");
-      })
-
-      $(".mui-dropdown__menu li").mouseout(function(){
-        $(this).css("background","");
-      })
-      localStorage.setItem("theme", "dark"); 
-    }else {
-      $("#body").css("background", "");
-      $("#body").css("color","");
-      $(".mui-panel").css("background","");
-      $(".card-example ").css("background","");
-      $(".mui--text-dark").css("color","");
-      $("#contact-us").css("background", "");
-      $("#contact-form>legend").css("color","");
-      $("#body>footer").css("background","");
-      Chart.defaults.global.defaultFontColor="black";
-      massPopChart.options.legend.labels.fontColor="black";
-      massPopChart.options.scales.yAxes[0].gridLines.color="grey";
-      massPopChart.options.title.fontColor="goldenrod";
-      $(".mui--text-title").css("color","");
-      $(".mui--text-headline").css("color","");
-      $(".mui-dropdown__menu").css("background", "");
-      $(".mui-btn--primary").css("background-color", "#446684");
-      $("#submitEmail").css("background-color","#446684");
-      
-      $(".mui-dropdown__menu li").mouseover(function(){
-        $(this).css("background","");
-      })
-
-      $(".mui-dropdown__menu li").mouseout(function(){
-        $(this).css("background","");
-      })  
-      localStorage.setItem("theme", "light"); 
-    }    
-}
-
-// Dark Mode firing
-toggleSwitch.addEventListener("change", darkMode, false);
-
-// Dark Mode Retrieval
-const savedTheme = localStorage.getItem("theme")
-// console.log(savedTheme);
-if(savedTheme==="dark"){
-  toggleSwitch.checked = true;
-  darkMode();
-}
-
 // Podcast Ajax Call
 function podcast() {
   var queryURL = "https://api.spreaker.com/v2/search?type=shows&q=crypto"
@@ -447,7 +375,6 @@ function podcast() {
 
   })
 }
-
 podcast();
 
 // Podcast Carousel Options
@@ -462,11 +389,86 @@ window.onload = function() {
 var podPlayer = SP.getWidget("podPlayer");
 
 $(".carousel-item").dblclick(function(){
+  console.log(savedTheme);
   podShow = podcastResponse[this.id.slice(-1)].show_id
   podImage = podcastResponse[this.id.slice(-1)].image_url
   podSrc = podPlayer.iframe.src;
-  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=light&playlist=show&chapters-image=true" 
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
 })
+}
+
+// Dark Mode switch
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+function darkMode(e) {
+  if (toggleSwitch.checked) {
+    $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
+    $("#body").css("color","white");
+    $(".mui-panel").css("background","#0a0d18d6");
+    $(".card-example ").css("background","#0a0d18d6");
+    $(".mui--text-dark").css("color","white");
+    $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
+    $("#contact-form>legend").css("color","white");
+    $("#body>footer").css("background","black");
+    Chart.defaults.global.defaultFontColor="white";
+    massPopChart.options.legend.labels.fontColor="white";
+    massPopChart.options.scales.yAxes[0].gridLines.color="white";
+    massPopChart.options.title.fontColor="gold";
+    $(".mui--text-title").css("color","gold");
+    $(".mui--text-headline").css("color","#818cab");
+    $(".mui-dropdown__menu").css("background","linear-gradient(153deg, rgba(78,11,117,1) 17%, rgba(128,0,128,1) 62%, rgba(255,243,0,1) 93%)");
+    $(".mui-btn--primary").css("background-color","#4e0b75")
+    $("#submitEmail").css("background-color","#4e0b75")
+    $("#siteNav").css("background", "");
+    
+    $(".mui-dropdown__menu li").mouseover(function(){
+      $(this).css("background","#E3B93B");
+    })
+
+    $(".mui-dropdown__menu li").mouseout(function(){
+      $(this).css("background","");
+    })
+    savedTheme = "dark";
+    localStorage.setItem("theme", "dark"); 
+  }else {
+    $("#body").css("background", "");
+    $("#body").css("color","");
+    $(".mui-panel").css("background","");
+    $(".card-example ").css("background","");
+    $(".mui--text-dark").css("color","");
+    $("#contact-us").css("background", "");
+    $("#contact-form>legend").css("color","");
+    $("#body>footer").css("background","");
+    Chart.defaults.global.defaultFontColor="black";
+    massPopChart.options.legend.labels.fontColor="black";
+    massPopChart.options.scales.yAxes[0].gridLines.color="grey";
+    massPopChart.options.title.fontColor="goldenrod";
+    $(".mui--text-title").css("color","");
+    $(".mui--text-headline").css("color","");
+    $(".mui-dropdown__menu").css("background", "");
+    $(".mui-btn--primary").css("background-color", "#446684");
+    $("#submitEmail").css("background-color","#446684");
+    $("")
+    $(".mui-dropdown__menu li").mouseover(function(){
+      $(this).css("background","");
+    })
+
+    $(".mui-dropdown__menu li").mouseout(function(){
+      $(this).css("background","");
+    })  
+    savedTheme = "light";
+    localStorage.setItem("theme", "light"); 
+  }    
+}
+
+// Dark Mode firing
+toggleSwitch.addEventListener("change", darkMode, false);
+
+// Dark Mode Retrieval
+var savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+  darkMode();
 }
 });
