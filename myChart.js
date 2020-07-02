@@ -465,8 +465,8 @@ $(".carousel-item").dblclick(function(){
   podShow = podcastResponse[this.id.slice(-1)].show_id
   podImage = podcastResponse[this.id.slice(-1)].image_url
   podSrc = podPlayer.iframe.src;
-  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=light&playlist=show&chapters-image=true&cover_image_url="
-  + podImage;
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=light&playlist=show&chapters-image=true" 
+  // "&cover_image_url=" + podImage;
 })
 }
 });
