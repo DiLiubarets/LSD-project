@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var today = moment().format("YYYY MMM Do"); 
 var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var avgArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -431,3 +432,29 @@ if(savedTheme==="dark"){
   toggleSwitch.checked = true;
   darkMode();
 }
+
+function podcast() {
+  var queryURL = "https://api.spreaker.com/v2/search?type=shows&q=crypto"
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function(response){
+    var podcastResponse = response.response.items.slice(0,5);
+    // console.log(response);
+    console.log(podcastResponse)
+
+  })
+}
+
+podcast();
+$(".carousel").carousel({
+  fullWidth: true,
+  dist: 0,
+  indicators: true,
+});
+
+$(".carousel-item").dblclick(function(){
+  
+})
+});
