@@ -397,6 +397,6 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   border: none;
-  padding-top: 80px;
+  padding-top: 50px;
 }
 
