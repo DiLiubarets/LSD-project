@@ -41,7 +41,10 @@
             </ul>
           </td>
           <td class="mui--text-right">
+
+
             <ul class="mui-list--inline mui--text-subhead" id="bigScreen">
+
               <li>
                 <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
               </li>
@@ -54,11 +57,23 @@
               <li>
                 <a href="#crypto-news"><span class="mui-text mui-caret--right">News</span></a>
               </li>
+              <li>
+                
+              </li>
             </ul>
+
+            <div id="checkboxWrapper" class="theme-switch-wrapper">
+                  <label class="theme-switch" for="checkbox">
+                      <input type="checkbox" id="checkbox" />
+                      <div class="slider round"></div>
+                </label>
+        </div>
+
             <div class="mui-dropdown mui-dropdown--left" id="smallScreen">
               <span data-mui-toggle="dropdown">
                 <i class="fa fa-bars"> </i>
               </span>
+
               <ul id="siteNav" class="mui-dropdown__menu">
                 <li>
                   <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
@@ -71,6 +86,9 @@
                 </li>
                 <li>
                   <a href="#crypto-news"><span class="mui-text mui-caret--right">News</span></a>
+                  </li>
+                <li>
+                      <a href="#checkbox"><span class="mui-text mui-caret--right">Dark Mode</span></a>
                 </li>
               </ul>
             </div>
@@ -85,7 +103,7 @@
         <div class="modal-header"><span id="close-modal">&times;</span>
         <h2>News Articles</h2>
         </div>
-        <p id="modal-links"></p>
+        <p data-aos="fade-right" id="modal-links"></p>
         <div class="modal-footer">Google News API
         </div>
       </div>
@@ -116,10 +134,9 @@
             ><i class="fa fa-bar-chart" aria-hidden="true"></i> Average:</span
           ><br />
           <!-- dropdown menu with coin names -->
-          <div class="mui-dropdown">
+          <div id="coinMenu" class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
               <i class="fa fa-btc" aria-hidden="true"> Coins</i>
-
               <span class="mui-caret"></span>
             </button>
             <ul id="currentCoin" class="mui-dropdown__menu">
@@ -170,7 +187,7 @@
       id="crypto-news"
       data-aos="fade-up"
       data-aos-anchor-placement="top-bottom"
-    >
+    > 
       <div id="title-crypto" class="mui--text-display3">Crypto</div>
       <br />
       <div class="mui--text-display4">NEWS</div>
@@ -290,11 +307,10 @@
       </div>
     </div>
     <br />
-   
-    
-      <div id="about-project" class="mui-container mui--text-left">
+      <div id="about-project" class="mui-container mui--text-left" data-aos="fade-left">
         <div class="mui--text-body2">
           <h3 class="mui--text-display3">About LSD</h3>
+
           <p> LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. 
             Whether you are a professional investor or an amateur enthusiast, 
             LSD provides all the necessary tools to grab the market bull by its horns.
@@ -313,13 +329,12 @@
           </h4>
         </div>
       </div> 
-  
       <hr>
         <!-- contact us form -->
         <div class="mui-panel" id="contact-us">
         <div class="mui-container">
             <form class="mui-form" id="contact-form">
-              <legend>Contact Us</legend>
+              <legend>CONTACT US</legend>
               <div class="mui-textfield mui-textfield--float-label">
                 <input id="inputName" type="text" required />
                 <label>Name</label>
@@ -339,8 +354,6 @@
             </form>
         </div>
         </div>
-       
-        
 
        <!-- footer  -->
     <footer>

@@ -9,6 +9,9 @@ var globalIntervalNum;
 var globalIntervalString;
 var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
+$(".mui-btn--primary").css("background-color", "#446684");
+$("#submitEmail").css("background-color", "#446684");
+
 
 // aos function animate 
 AOS.init();
@@ -77,7 +80,7 @@ let massPopChart = new Chart(myChart, {
       display: true,
       text: "",
       fontSize: 25,
-      fontColor: "gold",
+      fontColor: "goldenrod",
     },
     legend: {
       display: true,
@@ -162,7 +165,7 @@ function getLivePrice(queryURL) {
     method: "GET",
   }).then(function (response) {
     var price = parseFloat(parseFloat(response.data.rateUsd).toFixed(3));
-    console.log(price);
+    // console.log(price);
     $("#realTimePrice").html("Live price: $" + price);
     arr[arr.length - 1] = price;
     
@@ -208,7 +211,7 @@ function generalPurpose() {
     //console.log(response.data)
     for (assets of response.data) {
       if (assets.type == "crypto") {
-        console.log(assets.id);
+        // console.log(assets.id);
       }
     }
   });
@@ -234,7 +237,7 @@ $("#submitEmail").click(function (e) {
   var message = $("#inputMessage").val();
 
   if (name == "" || email == "" || message == "") {
-    console.log("fail");
+    // console.log("fail");
     return false;
   } else {
     e.preventDefault();
@@ -252,18 +255,16 @@ $("#submitEmail").click(function (e) {
     xhr.onreadystatechange = function () {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
       if (xhr.status === 200) {
-        console.log("success");
+        // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
       } else {
-        console.log("error");
+        // console.log("error");
         status.innerHTML = "Oops! There was a problem.";
       }
     };
     xhr.send(data);
   }
 });
-
-
 
 // API for news 
 function getNews(coin){
@@ -279,7 +280,7 @@ function getNews(coin){
     //console.log(response)
     for (i=0; i<6; i++){
       var articles = response.articles
-      console.log(articles)
+      // console.log(articles)
       var title = response.articles[i].title
       var description = response.articles[i].description
       var explore = response.articles[i].url
@@ -296,7 +297,6 @@ function getNews(coin){
 }
 
 // GMAIL News Modal
-
 $("#newsBtn").on("click", function(){
   event.preventDefault();
   var key= "c7607f7ed4342aee28bd3bb885a9faac";
@@ -318,7 +318,7 @@ $("#newsBtn").on("click", function(){
       url: queryURL,
       method: "GET",
     }).then(function(response) {
-      console.log(response)
+      // console.log(response)
       var results = response; 
       $(results.articles).each(function(index){
       var title  = response.articles[index].title;
@@ -326,6 +326,7 @@ $("#newsBtn").on("click", function(){
       var source = response.articles[index].source.name;
       var newsLink = $("<a>");
       var dateLine = $("<p>");
+      var articleContainer = $("<div>");
   
       newsLink.attr("href", webUrl);
       newsLink.attr("target", "_blank");
@@ -333,9 +334,14 @@ $("#newsBtn").on("click", function(){
 
       dateLine.text("Date: " + response.articles[index].publishedAt);
       dateLine.attr("class", "modal-dates");
-    
-      $("#modal-links").append(newsLink);
-      $("#modal-links").append("<br>","Source: ", source, dateLine, "<hr>",);
+      
+
+      articleContainer.append(newsLink);
+      articleContainer.append("<br>","Source: ", source, dateLine);
+      articleContainer.attr("data-aos", "fade-left");
+      articleContainer.attr("data-aos-anchor", "#newsModal");
+
+      $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
     })
@@ -353,3 +359,75 @@ $(window).on("click", function(event){
       $("#modal-links").empty()
     }
 })
+
+// Dark Mode switch
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+function darkMode(e) {
+    if (toggleSwitch.checked) {
+      $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
+      $("#body").css("color","white");
+      $(".mui-panel").css("background","#0a0d18d6");
+      $(".card-example ").css("background","#0a0d18d6");
+      $(".mui--text-dark").css("color","white");
+      $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
+      $("#contact-form>legend").css("color","white");
+      $("#body>footer").css("background","black");
+      Chart.defaults.global.defaultFontColor="white";
+      massPopChart.options.legend.labels.fontColor="white";
+      massPopChart.options.scales.yAxes[0].gridLines.color="white";
+      massPopChart.options.title.fontColor="gold";
+      $(".mui--text-title").css("color","gold");
+      $(".mui--text-headline").css("color","#818cab");
+      $(".mui-dropdown__menu").css("background","linear-gradient(153deg, rgba(78,11,117,1) 17%, rgba(128,0,128,1) 62%, rgba(255,243,0,1) 93%)");
+      $(".mui-btn--primary").css("background-color","#4e0b75")
+      $("#submitEmail").css("background-color","#4e0b75")
+      $("#siteNav").css("background", "");
+      
+      $(".mui-dropdown__menu li").mouseover(function(){
+        $(this).css("background","#E3B93B");
+      })
+
+      $(".mui-dropdown__menu li").mouseout(function(){
+        $(this).css("background","");
+      })
+      localStorage.setItem("theme", "dark"); 
+    }else {
+      $("#body").css("background", "");
+      $("#body").css("color","");
+      $(".mui-panel").css("background","");
+      $(".card-example ").css("background","");
+      $(".mui--text-dark").css("color","");
+      $("#contact-us").css("background", "");
+      $("#contact-form>legend").css("color","");
+      $("#body>footer").css("background","");
+      Chart.defaults.global.defaultFontColor="black";
+      massPopChart.options.legend.labels.fontColor="black";
+      massPopChart.options.scales.yAxes[0].gridLines.color="grey";
+      massPopChart.options.title.fontColor="goldenrod";
+      $(".mui--text-title").css("color","");
+      $(".mui--text-headline").css("color","");
+      $(".mui-dropdown__menu").css("background", "");
+      $(".mui-btn--primary").css("background-color", "#446684");
+      $("#submitEmail").css("background-color","#446684");
+      
+      $(".mui-dropdown__menu li").mouseover(function(){
+        $(this).css("background","");
+      })
+
+      $(".mui-dropdown__menu li").mouseout(function(){
+        $(this).css("background","");
+      })  
+      localStorage.setItem("theme", "light"); 
+    }    
+}
+
+// Dark Mode firing
+toggleSwitch.addEventListener("change", darkMode, false);
+
+// Dark Mode Retrieval
+const savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+  darkMode();
+}
