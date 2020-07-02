@@ -410,6 +410,8 @@ function darkMode(e) {
     $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
     $("#contact-form>legend").css("color","white");
     $("#body>footer").css("background","black");
+    $("#modal-body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
+    $("#modal-title").css("color","white");
     Chart.defaults.global.defaultFontColor="white";
     massPopChart.options.legend.labels.fontColor="white";
     massPopChart.options.scales.yAxes[0].gridLines.color="white";
@@ -439,6 +441,8 @@ function darkMode(e) {
     $("#contact-us").css("background", "");
     $("#contact-form>legend").css("color","");
     $("#body>footer").css("background","");
+    $("#modal-body").css("background", "");
+    $("#modal-title").css("color","");
     Chart.defaults.global.defaultFontColor="black";
     massPopChart.options.legend.labels.fontColor="black";
     massPopChart.options.scales.yAxes[0].gridLines.color="grey";
