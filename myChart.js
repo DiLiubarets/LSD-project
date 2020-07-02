@@ -326,6 +326,7 @@ $("#newsBtn").on("click", function(){
       var source = response.articles[index].source.name;
       var newsLink = $("<a>");
       var dateLine = $("<p>");
+      var articleContainer = $("<div>");
   
       newsLink.attr("href", webUrl);
       newsLink.attr("target", "_blank");
@@ -333,9 +334,14 @@ $("#newsBtn").on("click", function(){
 
       dateLine.text("Date: " + response.articles[index].publishedAt);
       dateLine.attr("class", "modal-dates");
-    
-      $("#modal-links").append(newsLink);
-      $("#modal-links").append("<br>","Source: ", source, dateLine, "<hr>",);
+      
+
+      articleContainer.append(newsLink);
+      articleContainer.append("<br>","Source: ", source, dateLine);
+      articleContainer.attr("data-aos", "fade-left");
+      articleContainer.attr("data-aos-anchor", "#newsModal");
+
+      $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
     })

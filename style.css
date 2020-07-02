@@ -3,12 +3,24 @@ body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   font-size: 16px;
 }
+
+/* standard button styling  */
+.mui-btn {
+  background-image: linear-gradient(
+    to top,
+    #09203f 0%,
+    #537895 100%
+  ) !important;
+  padding-left: 2em;
+}
+.mui-btn a:hover{
+  color:honeydew;
+}
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 .mui--text-title {
-  padding-left: 2em;
   color: goldenrod;
 }
 
@@ -16,20 +28,20 @@ img {
   width: 70px;
   height: 70px;
 }
-
-/* navbar header */
-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
+/* responsive navbar menu */
+#smallScreen{
+  margin-right: 1em;
+  color:goldenrod;
+  font-size: 20px;
+}
+#smallScreen:hover{
+  cursor: pointer;
 }
 
+
 ul.mui-list--inline {
-  margin-bottom: -5em;
   margin-right: 3em;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 header a {
@@ -42,6 +54,11 @@ header table {
 
 /* dropdown menu */
 .mui-btn--primary {
+  background-image: linear-gradient(
+    to top,
+    #09203f 0%,
+    #537895 100%
+  ) !important;
   padding-left: 2em;
 }
 
@@ -72,18 +89,18 @@ header table {
 }
 
 #mui-row {
-  margin-top: 5em;
+  margin-top: 2em;
   margin-left: 2em;
   margin-right: 4em;
 }
 
 /* contact form */
+
 #inputName, #inputEmail, #inputMessage {
-  font-size: 1rem;
+  font-size: 1em;
 }
-#inputMessage {
-  resize: none;
-}
+
+
 #contact-us {
   width: 50%;
   margin: auto;
@@ -96,10 +113,11 @@ header table {
   font-weight: 600;
 }
 
-/* style title */
-#title-crypto {
-  padding-left: 1em;
+/* CryptoNews */
+#crypto-news{
+  margin-top: 3em;
 }
+
 /* cards style */
 .card-example {
   position: relative;
@@ -121,6 +139,7 @@ a {
   font-weight: 800;
 }
 
+
 .fa-bitcoin {
   color: goldenrod;
 }
@@ -133,10 +152,6 @@ ul {
   padding-bottom: 20px;
 }
 
-/* responsive navbar menu */
-#smallScreen{
-  margin-right: 5em;
-}
 
 /* modal */
 .modal{
@@ -156,6 +171,7 @@ text-align: center;
 background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 border-radius: 20px 20px 0px 0px;
 padding:10px;
+padding-bottom: 25px;
 color: goldenrod;
 }
 
@@ -172,7 +188,7 @@ color: goldenrod;
 
 #modal-body{
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 75%;
   background-color: honeydew;
   border-radius: 20px;
@@ -201,7 +217,17 @@ color: goldenrod;
   font-size: 1rem;
 }
 
-
+h2{
+  display: inline !important;
+  color:goldenrod;
+  padding-left: 1em;
+}
+h4 a{
+  color: black;
+}
+button a {
+  color: black;
+}
 /* footer */
 footer {
   margin-top: 5em;
@@ -289,6 +315,23 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
+
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+@media(max-width: 720px){
+  #bigScreen{
+    display: none;
+  }
+  #smallScreen{
+    display:block
+  }
+}
+@media(min-width:720px){
+  #smallScreen{
+    display:none;
+  }
+}
+
