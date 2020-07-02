@@ -93,7 +93,7 @@ header table {
 #mui-row {
   margin-top: 2em;
   margin-left: 2em;
-  margin-right: 4em;
+  margin-right: 2em;
 }
 
 /* contact form */
@@ -119,7 +119,9 @@ header table {
 
 /* CryptoNews */
 #crypto-news{
-  margin-top: 3em;
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;;
 }
 
 /* cards style */
@@ -272,7 +274,7 @@ footer {
   display:flex ;
   position: absolute;
   right: 0.5%;
-  top: 2.7%;
+  top: 4%;
 }
 
 .theme-switch {
@@ -295,6 +297,7 @@ footer {
   right: 0;
   top: 0;
   transition: .4s;
+  height: 36px;
 }
 
 .slider:before {
@@ -306,6 +309,7 @@ footer {
   position: absolute;
   transition: .4s;
   width: 26px;
+  box-sizing: initial;
 }
 
 input:checked + .slider {
@@ -333,10 +337,66 @@ input:checked + .slider:before {
   #smallScreen{
     display:block
   }
+  #podSlider {
+    height: 100%;
+}
 }
 @media(min-width:720px){
   #smallScreen{
     display:none;
   }
+  #podSlider {
+    height: 100%;
+}
+}
+
+/* Podcast Row */
+#podRow {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  height: 400px;
+}
+
+#podCol1 {
+  padding:0;
+  border: none;
+  height: 100%;
+}
+
+.carousel .carousel-slider .carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#car0 #car1 #car2 #car3 #car4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  min-height: 20px;
+  position: relative;
+}
+
+#podSlider {
+  height: 100%;
+  min-height: 100%;
+}
+
+.carousel .carousel-item>img {
+  width: 85%;
+  height: 85%;
+  max-height: 85%;
+  max-width: 85%;;
+}
+
+#podCol2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding-top: 50px;
 }
 

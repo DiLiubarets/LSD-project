@@ -6,7 +6,11 @@
     <title>LSD crypto project</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
       rel="stylesheet"
@@ -23,6 +27,7 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
   </head>
 
@@ -174,6 +179,25 @@
             <div class="mui--text" id="description"></div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Podcast Carousel and Player -->
+    <div id="podRow" class="mui-row">
+      <div id="podCol1" class="mui-col-md-5">
+        <!-- Carousel from materialize -->
+      <div id="podSlider" class="carousel carousel-slider">
+      <img id="car0" class="carousel-item"src="https://d3wo5wojvuv7l.cloudfront.net/images.spreaker.com/original/f56d7657c3f06f4807db5deb44c1d51b.jpg">
+      <img id="car1" class="carousel-item" src="https://d1bm3dmew779uf.cloudfront.net/large/947f0c84a71122004550ee027d96618e.jpg">
+      <img id="car2" class="carousel-item" src="https://d1bm3dmew779uf.cloudfront.net/large/888f6ef173d6be8b5def265bd1003055.jpg">
+      <img id="car3" class="carousel-item" src="https://d1bm3dmew779uf.cloudfront.net/large/28a9eb1a6de37f5f35f56cb59772ce52.jpg">
+      <img id="car4" class="carousel-item" src="https://d1bm3dmew779uf.cloudfront.net/large/c8ecfbf38ca2c8bccaebddf68f66ca92.jpg">
+      </div>
+      </div>
+
+      <div id="podCol2" class="mui-col-md-7">
+        <!-- Spreaker Player widget loaded with default values -->
+      <a id="podPlayer" class="spreaker-player" href="https://www.spreaker.com/show/stock-trading-university" data-resource="show_id=1242925" data-theme="light" data-autoplay="false" data-playlist="show" data-width="100%" data-height="300px"></a>
       </div>
     </div>
 
@@ -362,7 +386,15 @@
       </div>
     </footer>
 
+    <!-- The below code was for debugging purposes on how the grid visibly operated -->
+    <style>
+      div {
+        border: 1px solid green;
+      }
+    </style>
+
     <!-- script.js -->
     <script src="myChart.js" type="text/javascript"></script>
+    <script async src="https://widget.spreaker.com/widgets.js"></script>
   </body>
 </html>
