@@ -83,6 +83,7 @@ header table {
 }
 
 
+
 /* mychart */
 .chart-container {
   margin-left: 3em;
@@ -95,11 +96,13 @@ header table {
 }
 
 /* contact form */
-
 #inputName, #inputEmail, #inputMessage {
   font-size: 1em;
 }
 
+#inputMessage {
+  resize: none;
+}
 
 #contact-us {
   width: 50%;
