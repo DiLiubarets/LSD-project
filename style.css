@@ -6,16 +6,17 @@ body {
 
 /* standard button styling  */
 .mui-btn {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 .mui-btn a:hover{
   color:honeydew;
 }
+
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -40,7 +41,7 @@ img {
 
 
 ul.mui-list--inline {
-  margin-right: 3em;
+  margin-right: 4em;
   font-size: 17px;
 }
 
@@ -54,11 +55,11 @@ header table {
 
 /* dropdown menu */
 .mui-btn--primary {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 
@@ -83,6 +84,7 @@ header table {
 }
 
 
+
 /* mychart */
 .chart-container {
   margin-left: 3em;
@@ -95,11 +97,13 @@ header table {
 }
 
 /* contact form */
-
 #inputName, #inputEmail, #inputMessage {
   font-size: 1em;
 }
 
+#inputMessage {
+  resize: none;
+}
 
 #contact-us {
   width: 50%;
@@ -250,7 +254,8 @@ footer {
   }
   #smallScreen{
     display:block;
-    top: 10px;
+    bottom: 3px;
+    right: 50px;
   }
 }
 
@@ -266,8 +271,8 @@ footer {
 .theme-switch-wrapper {
   display:flex ;
   position: absolute;
-  right: 1%;
-  bottom: 30%;
+  right: 0.5%;
+  top: 2.7%;
 }
 
 .theme-switch {
