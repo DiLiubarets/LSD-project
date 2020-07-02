@@ -12,7 +12,7 @@ var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
 $(".mui-btn--primary").css("background-color", "#446684");
 $("#submitEmail").css("background-color", "#446684");
-
+var podcastResponse;
 
 // aos function animate 
 AOS.init();
@@ -433,6 +433,7 @@ if(savedTheme==="dark"){
   darkMode();
 }
 
+// Podcast Ajax Call
 function podcast() {
   var queryURL = "https://api.spreaker.com/v2/search?type=shows&q=crypto"
 
@@ -440,7 +441,7 @@ function podcast() {
     url: queryURL,
     method: "GET",
   }).then(function(response){
-    var podcastResponse = response.response.items.slice(0,5);
+    podcastResponse = response.response.items.slice(0,5);
     // console.log(response);
     console.log(podcastResponse)
 
@@ -448,13 +449,24 @@ function podcast() {
 }
 
 podcast();
+
+// Podcast Carousel Options
 $(".carousel").carousel({
   fullWidth: true,
   dist: 0,
   indicators: true,
 });
 
+// Podcast double click function (doesnt work without window.onload)
+window.onload = function() {
+var podPlayer = SP.getWidget("podPlayer");
+
 $(".carousel-item").dblclick(function(){
-  
+  podShow = podcastResponse[this.id.slice(-1)].show_id
+  podImage = podcastResponse[this.id.slice(-1)].image_url
+  podSrc = podPlayer.iframe.src;
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=light&playlist=show&chapters-image=true&cover_image_url="
+  + podImage;
 })
+}
 });
