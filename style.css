@@ -6,16 +6,17 @@ body {
 
 /* standard button styling  */
 .mui-btn {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 .mui-btn a:hover{
   color:honeydew;
 }
+
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -54,11 +55,11 @@ header table {
 
 /* dropdown menu */
 .mui-btn--primary {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 
