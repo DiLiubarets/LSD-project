@@ -271,7 +271,7 @@ footer {
   display:flex ;
   position: absolute;
   right: 1%;
-  bottom: 30%;
+  top: 2.7%;
 }
 
 .theme-switch {
