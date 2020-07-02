@@ -254,7 +254,8 @@ footer {
   }
   #smallScreen{
     display:block;
-    top: 10px;
+    bottom: 3px;
+    right: 50px;
   }
 }
 
