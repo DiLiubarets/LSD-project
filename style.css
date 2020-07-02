@@ -14,7 +14,7 @@ body {
   padding-left: 2em;
 }
 .mui-btn a:hover{
-  color:honeydew;
+  color:black;
 }
 
 /* app-bar  */
@@ -160,7 +160,7 @@ ul {
 
 
 /* modal */
-.modal{
+#newsModal{
   display: none;
   position: fixed;
   z-index: 1;
@@ -172,7 +172,7 @@ ul {
   background-color: rgba(0,0,0,0.5); 
 }
 
-.modal-header{
+#modal-header{
 text-align: center;
 background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 border-radius: 20px 20px 0px 0px;
@@ -181,7 +181,7 @@ padding-bottom: 25px;
 color: goldenrod;
 }
 
-.modal-footer{
+#modal-footer{
   text-align: center;
   padding: 0px 0px 15px 0px;
   margin: 0;
@@ -335,7 +335,7 @@ input:checked + .slider:before {
     display: none;
   }
   #smallScreen{
-    display:block
+    display:block;
   }
   #podSlider {
     height: 100%;
