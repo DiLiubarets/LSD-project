@@ -402,13 +402,15 @@ podPlayer = SP.getWidget("podPlayer");
 podLink = $("a#podPlayer");
 podLink[0].dataset.theme=savedTheme;
 
-$(".carousel-item").dblclick(function(){
+$(".carousel-item").dblclick(podcastUpdate)
+  
+function podcastUpdate(){
   podShow = podcastResponse[this.id.slice(-1)].show_id
   podImage = podcastResponse[this.id.slice(-1)].image_url
   
   podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
-})
+}
 
 // Dark Mode switch
 darkMode();
@@ -443,7 +445,6 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    
     localStorage.setItem("theme", "dark"); 
   }else {
     savedTheme = "light";
@@ -475,7 +476,7 @@ function darkMode(e) {
       $(this).css("background","");
     })  
     
-    console.log(podLink);
+    // console.log(podLink);
     localStorage.setItem("theme", "light"); 
   }    
 }
