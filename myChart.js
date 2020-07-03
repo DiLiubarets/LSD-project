@@ -240,12 +240,10 @@ $("#timeDropdown").click(function (event) {
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
 
-  $("#soundChart").get(0).play()
-
+  $("#soundDropdown").get(0).play();
   localStorage.setItem("time0",globalCoin);
   localStorage.setItem("time1",intervalString);
   localStorage.setItem("time2",intervalNum);
-
 });
 
 // listener for coin name
@@ -253,12 +251,10 @@ $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
-  $("#soundChart").get(0).play()
-
+  $("#soundDropdown").get(0).play();
   localStorage.setItem("coin0",coin);
   localStorage.setItem("coin1",globalIntervalString);
   localStorage.setItem("coin2",globalIntervalNum);
-
 });
 
 // ajax request for contact us form with formspree
@@ -343,7 +339,9 @@ $("#newsBtn").on("click", function(){
       search += " Blockchain";
       break
   }
-  
+
+  $("#soundDropdown").get(0).play();
+
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
   
   $.ajax({
@@ -376,7 +374,6 @@ $("#newsBtn").on("click", function(){
       $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
-      $("#soundChart").get(0).play()
     })
   })
 
@@ -406,7 +403,6 @@ function podcast() {
     // console.log(podcastResponse)
     darkMode();
     
-
   })
 }
 podcast();
@@ -513,9 +509,7 @@ function darkMode() {
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
 
-$(toggleSwitch).on("click", function(){
-  $("#soundChart").get(0).play()
-})
+
 // Dark Mode Retrieval
 var savedTheme = localStorage.getItem("theme")
 // console.log(savedTheme);
@@ -524,12 +518,24 @@ if(savedTheme==="dark"){
   darkMode();
 }
 
+// Sound eventlisteners
+// $(toggleSwitch).on("click", function(){
+//   $("#soundDark").get(0).play();
+//   $("#soundDropdown").get(0).play();
+// })
+// $("#currentCoin").click(function (){
+//   $("#soundDropdown").get(0).play();
+//   console.log("soundDropdown");
+// })
+
 $("#bigScreen").on("click", function(){
   $("#soundNav").get(0).play();
+  console.log("test")
 })
 
 $("#smallScreen").on("click", function(){
   $("#soundNav").get(0).play();
+  console.log("test")
 })
 
 
