@@ -224,7 +224,6 @@ $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
-  $("#audioLoad").get(0).play();
 });
 
 // listener for coin name
