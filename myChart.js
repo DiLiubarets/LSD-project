@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var today = moment().format("YYYY MMM Do"); 
 var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var avgArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -11,10 +12,20 @@ var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
 $(".mui-btn--primary").css("background-color", "#446684");
 $("#submitEmail").css("background-color", "#446684");
-
-
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+var podcastResponse;
+var podPlayer;
+var carouselIndex=0;
 // aos function animate 
 AOS.init();
+
+// Dark Mode Retrieval
+var savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+}
+
 // object with description about coins
 var aboutCoin = {
   bitcoin:
@@ -217,17 +228,37 @@ function generalPurpose() {
   });
 }
 
+// Retrieves last viewed currency and duration
+if(localStorage.getItem("time0")){
+  configPrice(localStorage.getItem("time0"),localStorage.getItem("time1"),localStorage.getItem("time2"))
+  configPrice(localStorage.getItem("coin0"),localStorage.getItem("coin1"),localStorage.getItem("coin2"));
+}
+
 // listener for time duration menu
 $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
+
+  $("#soundChart").get(0).play()
+
+  localStorage.setItem("time0",globalCoin);
+  localStorage.setItem("time1",intervalString);
+  localStorage.setItem("time2",intervalNum);
+
 });
 
 // listener for coin name
 $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
+
+  $("#soundChart").get(0).play()
+
+  localStorage.setItem("coin0",coin);
+  localStorage.setItem("coin1",globalIntervalString);
+  localStorage.setItem("coin2",globalIntervalNum);
+
 });
 
 // ajax request for contact us form with formspree
@@ -290,6 +321,7 @@ function getNews(coin){
       $('#des' + i).text(description)
       $('#link-button' + i).attr('href',explore)
       $('#card-img' + i).attr('src', image)
+      
     }
     
   
@@ -344,6 +376,7 @@ $("#newsBtn").on("click", function(){
       $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
+      $("#soundChart").get(0).play()
     })
   })
 
@@ -360,74 +393,144 @@ $(window).on("click", function(event){
     }
 })
 
+// Podcast Ajax Call
+function podcast() {
+  var queryURL = "https://api.spreaker.com/v2/search?type=shows&q=crypto"
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function(response){
+    podcastResponse = response.response.items.slice(0,5);
+    // console.log(response);
+    // console.log(podcastResponse)
+    darkMode();
+    
+
+  })
+}
+podcast();
+
+// Podcast Carousel Options
+$(".carousel").carousel({
+  fullWidth: true,
+  dist: 0,
+  indicators: true,
+  onCycleTo: function (ele) {
+    carouselIndex= $(ele).index(); 
+    // console.log(carouselIndex)
+  }
+});
+
+// Podcast widget load (doesnt work without window.onload)
+window.onload = function() {
+podPlayer = SP.getWidget("podPlayer");
+podPlayer.iframe.src= "https://widget.spreaker.com/player?show_id=1242925&theme=" + savedTheme + "&playlist=show&playlist-continuous=true&playlist-loop=false&playlist-autoupdate=true&autoplay=false&live-autoplay=false&chapters-image=true&episode_image_position=right&hide-likes=false&hide-comments=false&hide-sharing=false&hide-logo=false&hide-download=true&hide-episode-description=false&hide-playlist-images=false&hide-playlist-descriptions=false&gdpr-consent=null"
+}
+
+// Podcast doubleclick function
+$(".carousel-item").dblclick(podcastUpdate)
+
+// Podcast update function
+function podcastUpdate(){
+  podShow = podcastResponse[carouselIndex].show_id
+  podImage = podcastResponse[carouselIndex].image_url
+
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
+  // "&cover_image_url=" + podImage;
+}
+
+
 // Dark Mode switch
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-function darkMode(e) {
-    if (toggleSwitch.checked) {
-      $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
-      $("#body").css("color","white");
-      $(".mui-panel").css("background","#0a0d18d6");
-      $(".card-example ").css("background","#0a0d18d6");
-      $(".mui--text-dark").css("color","white");
-      $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
-      $("#contact-form>legend").css("color","white");
-      $("#body>footer").css("background","black");
-      Chart.defaults.global.defaultFontColor="white";
-      massPopChart.options.legend.labels.fontColor="white";
-      massPopChart.options.scales.yAxes[0].gridLines.color="white";
-      massPopChart.options.title.fontColor="gold";
-      $(".mui--text-title").css("color","gold");
-      $(".mui--text-headline").css("color","#818cab");
-      $(".mui-dropdown__menu").css("background","linear-gradient(153deg, rgba(78,11,117,1) 17%, rgba(128,0,128,1) 62%, rgba(255,243,0,1) 93%)");
-      $(".mui-btn--primary").css("background-color","#4e0b75")
-      $("#submitEmail").css("background-color","#4e0b75")
-      $("#siteNav").css("background", "");
-      
-      $(".mui-dropdown__menu li").mouseover(function(){
-        $(this).css("background","#E3B93B");
-      })
+function darkMode() {
+  if (toggleSwitch.checked) {
+    savedTheme = "dark";
+    localStorage.setItem("theme", "dark"); 
+    $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
+    $("#body").css("color","white");
+    $(".mui-panel").css("background","#0a0d18d6");
+    $(".card-example ").css("background","#0a0d18d6");
+    $(".mui--text-dark").css("color","white");
+    $("#contact-us").css("background", "linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)");
+    $("#contact-form>legend").css("color","white");
+    $("#body>footer").css("background","black");
+    $("#modal-body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
+    $("#modal-title").css("color","white");
+    Chart.defaults.global.defaultFontColor="white";
+    massPopChart.options.legend.labels.fontColor="white";
+    massPopChart.options.scales.yAxes[0].gridLines.color="white";
+    massPopChart.options.title.fontColor="gold";
+    $(".mui--text-title").css("color","gold");
+    $(".mui--text-headline").css("color","#818cab");
+    $(".mui-dropdown__menu").css("background","linear-gradient(153deg, rgba(78,11,117,1) 17%, rgba(128,0,128,1) 62%, rgba(255,243,0,1) 93%)");
+    $(".mui-btn--primary").css("background-color","#4e0b75")
+    $("#submitEmail").css("background-color","#4e0b75")
+    $("#siteNav").css("background", "");
+    
+    $(".mui-dropdown__menu li").mouseover(function(){
+      $(this).css("background","#E3B93B");
+    })
 
-      $(".mui-dropdown__menu li").mouseout(function(){
-        $(this).css("background","");
-      })
-      localStorage.setItem("theme", "dark"); 
-    }else {
-      $("#body").css("background", "");
-      $("#body").css("color","");
-      $(".mui-panel").css("background","");
-      $(".card-example ").css("background","");
-      $(".mui--text-dark").css("color","");
-      $("#contact-us").css("background", "");
-      $("#contact-form>legend").css("color","");
-      $("#body>footer").css("background","");
-      Chart.defaults.global.defaultFontColor="black";
-      massPopChart.options.legend.labels.fontColor="black";
-      massPopChart.options.scales.yAxes[0].gridLines.color="grey";
-      massPopChart.options.title.fontColor="goldenrod";
-      $(".mui--text-title").css("color","");
-      $(".mui--text-headline").css("color","");
-      $(".mui-dropdown__menu").css("background", "");
-      $(".mui-btn--primary").css("background-color", "#446684");
-      $("#submitEmail").css("background-color","#446684");
-      
-      $(".mui-dropdown__menu li").mouseover(function(){
-        $(this).css("background","");
-      })
+    $(".mui-dropdown__menu li").mouseout(function(){
+      $(this).css("background","");
+    })
+    podcastUpdate();
+   
+  }else {
+    savedTheme = "light";
+    localStorage.setItem("theme", "light"); 
+    $("#body").css("background", "");
+    $("#body").css("color","");
+    $(".mui-panel").css("background","");
+    $(".card-example ").css("background","");
+    $(".mui--text-dark").css("color","");
+    $("#contact-us").css("background", "");
+    $("#contact-form>legend").css("color","");
+    $("#body>footer").css("background","");
+    $("#modal-body").css("background", "");
+    $("#modal-title").css("color","");
+    Chart.defaults.global.defaultFontColor="black";
+    massPopChart.options.legend.labels.fontColor="black";
+    massPopChart.options.scales.yAxes[0].gridLines.color="grey";
+    massPopChart.options.title.fontColor="goldenrod";
+    $(".mui--text-title").css("color","");
+    $(".mui--text-headline").css("color","");
+    $(".mui-dropdown__menu").css("background", "");
+    $(".mui-btn--primary").css("background-color", "#446684");
+    $("#submitEmail").css("background-color","#446684");
+    $("")
+    $(".mui-dropdown__menu li").mouseover(function(){
+      $(this).css("background","");
+    })
 
-      $(".mui-dropdown__menu li").mouseout(function(){
-        $(this).css("background","");
-      })  
-      localStorage.setItem("theme", "light"); 
-    }    
+    $(".mui-dropdown__menu li").mouseout(function(){
+      $(this).css("background","");
+    })  
+    podcastUpdate();
+  }    
 }
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
 
+$(toggleSwitch).on("click", function(){
+  $("#soundChart").get(0).play()
+})
 // Dark Mode Retrieval
-const savedTheme = localStorage.getItem("theme")
+var savedTheme = localStorage.getItem("theme")
 // console.log(savedTheme);
 if(savedTheme==="dark"){
   toggleSwitch.checked = true;
   darkMode();
 }
+
+$("#bigScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
+$("#smallScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
+
+});

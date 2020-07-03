@@ -6,16 +6,17 @@ body {
 
 /* standard button styling  */
 .mui-btn {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 .mui-btn a:hover{
-  color:honeydew;
+  color:black;
 }
+
 /* app-bar  */
 .mui-appbar {
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -40,7 +41,7 @@ img {
 
 
 ul.mui-list--inline {
-  margin-right: 3em;
+  margin-right: 4em;
   font-size: 17px;
 }
 
@@ -54,11 +55,11 @@ header table {
 
 /* dropdown menu */
 .mui-btn--primary {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to top,
     #09203f 0%,
     #537895 100%
-  ) !important;
+  ) !important; */
   padding-left: 2em;
 }
 
@@ -82,6 +83,11 @@ header table {
   text-align: center;
 }
 
+/* Crypto Description */
+#descriptionPanel {
+  max-height: 380px;
+  overflow-y: auto;
+}
 
 /* mychart */
 .chart-container {
@@ -91,15 +97,17 @@ header table {
 #mui-row {
   margin-top: 2em;
   margin-left: 2em;
-  margin-right: 4em;
+  margin-right: 2em;
 }
 
 /* contact form */
-
 #inputName, #inputEmail, #inputMessage {
   font-size: 1em;
 }
 
+#inputMessage {
+  resize: none;
+}
 
 #contact-us {
   width: 50%;
@@ -115,7 +123,9 @@ header table {
 
 /* CryptoNews */
 #crypto-news{
-  margin-top: 3em;
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;;
 }
 
 /* cards style */
@@ -154,7 +164,7 @@ ul {
 
 
 /* modal */
-.modal{
+#newsModal{
   display: none;
   position: fixed;
   z-index: 1;
@@ -166,7 +176,7 @@ ul {
   background-color: rgba(0,0,0,0.5); 
 }
 
-.modal-header{
+#modal-header{
 text-align: center;
 background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 border-radius: 20px 20px 0px 0px;
@@ -175,7 +185,7 @@ padding-bottom: 25px;
 color: goldenrod;
 }
 
-.modal-footer{
+#modal-footer{
   text-align: center;
   padding: 0px 0px 15px 0px;
   margin: 0;
@@ -209,6 +219,27 @@ color: goldenrod;
   cursor: pointer;
 }
 
+/* Modal Rows */
+#row0, #row1 {
+  display:flex;
+}
+
+.card-example img {
+  width: 100%;
+  height: 250px;
+}
+
+.mui--text-headline {
+display:flex;
+height: 130px;
+}
+
+#des0, #des1, #des2, #des3, #des4, #des5{
+  display: flex;
+  overflow-y: auto;
+  height: 115px;
+}
+
 /* About LSD */
 .mui--text-body2 h3 {
   font-weight: 750;
@@ -226,7 +257,8 @@ h4 a{
   color: black;
 }
 button a {
-  color: black;
+  /* color: black; */
+ color: #2196f3
 }
 /* footer */
 footer {
@@ -250,7 +282,8 @@ footer {
   }
   #smallScreen{
     display:block;
-    top: 10px;
+    bottom: 3px;
+    right: 50px;
   }
 }
 
@@ -266,8 +299,8 @@ footer {
 .theme-switch-wrapper {
   display:flex ;
   position: absolute;
-  right: 1%;
-  bottom: 30%;
+  right: 0.5%;
+  top: 4%;
 }
 
 .theme-switch {
@@ -290,6 +323,7 @@ footer {
   right: 0;
   top: 0;
   transition: .4s;
+  height: 36px;
 }
 
 .slider:before {
@@ -301,6 +335,7 @@ footer {
   position: absolute;
   transition: .4s;
   width: 26px;
+  box-sizing: initial;
 }
 
 input:checked + .slider {
@@ -326,12 +361,68 @@ input:checked + .slider:before {
     display: none;
   }
   #smallScreen{
-    display:block
+    display:block;
   }
+  #podSlider {
+    height: 100%;
+}
 }
 @media(min-width:720px){
   #smallScreen{
     display:none;
   }
+  #podSlider {
+    height: 100%;
+}
+}
+
+/* Podcast Row */
+#podRow {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  height: 400px;
+}
+
+#podCol1 {
+  padding:0;
+  border: none;
+  height: 100%;
+}
+
+.carousel .carousel-slider .carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#car0 #car1 #car2 #car3 #car4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  min-height: 20px;
+  position: relative;
+}
+
+#podSlider {
+  height: 100%;
+  min-height: 100%;
+}
+
+.carousel .carousel-item>img {
+  width: 85%;
+  height: 85%;
+  max-height: 85%;
+  max-width: 85%;;
+}
+
+#podCol2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding-top: 50px;
 }
 
