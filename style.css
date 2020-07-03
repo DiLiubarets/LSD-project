@@ -216,29 +216,28 @@ color: goldenrod;
 }
 
 /* Modal Rows */
-#row1 {
+#row0, #row1 {
   display:flex;
 }
+
 
 .card-example img {
   width: 100%;
   height: 250px;
 }
 
-#title0 #title1 #title2{
+.mui--text-headline {
 display:flex;
 height: 130px;
 }
 
-#des1 #des2 #des3{
+#des0, #des1, #des2, #des3, #des4, #des5{
   display: flex;
   overflow-y: auto;
   height: 115px;
 }
 
-#link-button0 #link-button1 #link-button2 {
-  color: #2196f3;
-}
+
 /* About LSD */
 .mui--text-body2 h3 {
   font-weight: 750;
@@ -256,7 +255,8 @@ h4 a{
   color: black;
 }
 button a {
-  color: black;
+  /* color: black; */
+ color: #2196f3
 }
 /* footer */
 footer {
