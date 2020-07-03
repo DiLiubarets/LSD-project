@@ -240,6 +240,7 @@ $("#timeDropdown").click(function (event) {
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
 
+  // Play sound & save in localstorage
   $("#soundDropdown").get(0).play();
   localStorage.setItem("time0",globalCoin);
   localStorage.setItem("time1",intervalString);
@@ -251,6 +252,7 @@ $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
+  // Play sound & save in localstorage
   $("#soundDropdown").get(0).play();
   localStorage.setItem("coin0",coin);
   localStorage.setItem("coin1",globalIntervalString);
@@ -284,12 +286,14 @@ $("#submitEmail").click(function (e) {
       if (xhr.status === 200) {
         // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
+        $("#soundEmail").get(0).play();
       } else {
         // console.log("error");
-        status.innerHTML = "Oops! There was a problem.";
+        status.innerHTML = "Oops! There was a problem. Please enter a valid email address";
       }
     };
     xhr.send(data);
+    
   }
 });
 
@@ -319,8 +323,6 @@ function getNews(coin){
       $('#card-img' + i).attr('src', image)
       
     }
-    
-  
   })
 }
 
@@ -340,6 +342,7 @@ $("#newsBtn").on("click", function(){
       break
   }
 
+  // Play sound
   $("#soundDropdown").get(0).play();
 
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
@@ -436,7 +439,6 @@ function podcastUpdate(){
   // "&cover_image_url=" + podImage;
 }
 
-
 // Dark Mode switch
 function darkMode() {
   if (toggleSwitch.checked) {
@@ -471,7 +473,6 @@ function darkMode() {
       $(this).css("background","");
     })
     podcastUpdate();
-   
   }else {
     savedTheme = "light";
     localStorage.setItem("theme", "light"); 
@@ -508,7 +509,9 @@ function darkMode() {
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
-
+$("#checkboxWrapper").click(function(){
+  $("#soundDark").get(0).play();
+})
 
 // Dark Mode Retrieval
 var savedTheme = localStorage.getItem("theme")
@@ -517,26 +520,4 @@ if(savedTheme==="dark"){
   toggleSwitch.checked = true;
   darkMode();
 }
-
-// Sound eventlisteners
-// $(toggleSwitch).on("click", function(){
-//   $("#soundDark").get(0).play();
-//   $("#soundDropdown").get(0).play();
-// })
-// $("#currentCoin").click(function (){
-//   $("#soundDropdown").get(0).play();
-//   console.log("soundDropdown");
-// })
-
-$("#bigScreen").on("click", function(){
-  $("#soundNav").get(0).play();
-  console.log("test")
-})
-
-$("#smallScreen").on("click", function(){
-  $("#soundNav").get(0).play();
-  console.log("test")
-})
-
-
 });
