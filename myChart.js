@@ -15,7 +15,7 @@ $("#submitEmail").css("background-color", "#446684");
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 var podcastResponse;
 var podPlayer;
-var carouselIndex;
+var carouselIndex=0;
 
 // aos function animate 
 AOS.init();
@@ -384,6 +384,7 @@ function podcast() {
     podcastResponse = response.response.items.slice(0,5);
     // console.log(response);
     // console.log(podcastResponse)
+    darkMode();
 
   })
 }
@@ -404,24 +405,25 @@ $(".carousel").carousel({
 window.onload = function() {
 podPlayer = SP.getWidget("podPlayer");
 }
-podLink = $("a#podPlayer");
-podLink[0].dataset.theme=savedTheme;
+
+// var podLink = $("a#podPlayer");
+// console.log($("#podPlayer"));
+// podLink[0].dataset.theme=savedTheme;
 
 $(".carousel-item").dblclick(podcastUpdate)
 
 function podcastUpdate(){
-  console.log($(".carousel").carousel().center);
-  // index = $("#podSlider")[0].M_Carousel.center;
-  // podShow = podcastResponse[index].show_id
-  // podImage = podcastResponse[index].image_url
-  // console.log($("#podSlider"))
-  // podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
+  console.log(savedTheme);
+  podShow = podcastResponse[carouselIndex].show_id
+  podImage = podcastResponse[carouselIndex].image_url
+
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
 }
 
+
 // Dark Mode switch
-darkMode();
-function darkMode(e) {
+function darkMode() {
   if (toggleSwitch.checked) {
     savedTheme = "dark";
     localStorage.setItem("theme", "dark"); 
@@ -453,7 +455,8 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    console.log($("#podSlider"));
+    podcastUpdate();
+   
   }else {
     savedTheme = "light";
     localStorage.setItem("theme", "light"); 
@@ -484,9 +487,7 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })  
-    
-    console.log($("#podSlider"));
-    
+    podcastUpdate();
   }    
 }
 
