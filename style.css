@@ -220,7 +220,6 @@ color: goldenrod;
   display:flex;
 }
 
-
 .card-example img {
   width: 100%;
   height: 250px;
@@ -236,7 +235,6 @@ height: 130px;
   overflow-y: auto;
   height: 115px;
 }
-
 
 /* About LSD */
 .mui--text-body2 h3 {
