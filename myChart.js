@@ -14,6 +14,7 @@ $(".mui-btn--primary").css("background-color", "#446684");
 $("#submitEmail").css("background-color", "#446684");
 var podcastResponse;
 
+
 // aos function animate 
 AOS.init();
 // object with description about coins
@@ -223,6 +224,7 @@ $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
+  $("#audioLoad").get(0).play();
 });
 
 // listener for coin name
