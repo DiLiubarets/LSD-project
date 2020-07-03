@@ -520,4 +520,12 @@ if(savedTheme==="dark"){
   toggleSwitch.checked = true;
   darkMode();
 }
+
+// Volume toggle
+$("#volume").click(function(){
+  console.log("test");
+  $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
+
+})
+
 });

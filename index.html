@@ -11,11 +11,19 @@
 
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link
+
+     <!-- Fontawesome -->
+    <!-- <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
       rel="stylesheet"
       type="text/css"
+    /> -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
     />
+
     <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <!-- aos animation -->
@@ -36,6 +44,7 @@
     <header class="mui-appbar">
       <table>
         <tr class="mui--appbar-height">
+          <!-- Navbar Title & Logo -->
           <td class="mui--appbar-height mui--text-title">
             <ul class="mui-list--inline">
            <li><img
@@ -47,7 +56,7 @@
           </td>
           <td class="mui--text-right">
 
-
+            <!-- Navbar Menu Regular-->
             <ul class="mui-list--inline mui--text-subhead" id="bigScreen">
               <li>
                 <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
@@ -66,6 +75,7 @@
               </li>
             </ul>
 
+            <!-- Darkmode Switch -->
             <div id="checkboxWrapper" class="theme-switch-wrapper">
               <label class="theme-switch" for="checkbox">
                 <input type="checkbox" id="checkbox" />
@@ -73,11 +83,14 @@
               </label>
             </div>
 
+            <!-- Volume Toggle -->
+            <i class="fa fa-volume-up" id="volume" ></i>
+
+            <!-- Navbar Menu Reduced width -->
             <div class="mui-dropdown mui-dropdown--left" id="smallScreen">
               <span data-mui-toggle="dropdown">
                 <i class="fa fa-bars"> </i>
               </span>
-
               <ul id="siteNav" class="mui-dropdown__menu">
                 <li>
                   <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
@@ -330,6 +343,8 @@
       </div>
     </div>
     <br />
+      
+      <!-- About LSD -->
       <div id="about-project" class="mui-container mui--text-left" data-aos="fade-left">
         <div class="mui--text-body2">
           <h3 class="mui--text-display3">About LSD</h3>
@@ -378,7 +393,7 @@
         </div>
         </div>
 
-       <!-- footer  -->
+    <!-- footer  -->
     <footer>
       <div class="mui-container mui--text-center mui--text-bottom">
         <a href="https://github.com/DiLiubarets/project-1">
