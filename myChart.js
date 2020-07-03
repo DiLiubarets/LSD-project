@@ -15,6 +15,7 @@ $("#submitEmail").css("background-color", "#446684");
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 var podcastResponse;
 var podPlayer;
+var carouselIndex;
 
 // aos function animate 
 AOS.init();
@@ -393,6 +394,10 @@ $(".carousel").carousel({
   fullWidth: true,
   dist: 0,
   indicators: true,
+  onCycleTo: function (ele) {
+    carouselIndex= $(ele).index(); 
+    // console.log(carouselIndex)
+  }
 });
 
 // Podcast double click function (doesnt work without window.onload)
@@ -403,12 +408,14 @@ podLink = $("a#podPlayer");
 podLink[0].dataset.theme=savedTheme;
 
 $(".carousel-item").dblclick(podcastUpdate)
-  
+
 function podcastUpdate(){
-  podShow = podcastResponse[this.id.slice(-1)].show_id
-  podImage = podcastResponse[this.id.slice(-1)].image_url
-  
-  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
+  console.log($(".carousel").carousel().center);
+  // index = $("#podSlider")[0].M_Carousel.center;
+  // podShow = podcastResponse[index].show_id
+  // podImage = podcastResponse[index].image_url
+  // console.log($("#podSlider"))
+  // podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
 }
 
@@ -446,7 +453,7 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    
+    console.log($("#podSlider"));
   }else {
     savedTheme = "light";
     localStorage.setItem("theme", "light"); 
@@ -478,7 +485,7 @@ function darkMode(e) {
       $(this).css("background","");
     })  
     
-    // console.log(podLink);
+    console.log($("#podSlider"));
     
   }    
 }
