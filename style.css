@@ -39,10 +39,10 @@ img {
   cursor: pointer;
 }
 
-
 ul.mui-list--inline {
-  margin-right: 4em;
+  /* margin-right: 4em; */
   font-size: 17px;
+  margin-left: 35px
 }
 
 header a {
