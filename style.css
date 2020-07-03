@@ -83,7 +83,11 @@ header table {
   text-align: center;
 }
 
-
+/* Crypto Description */
+#descriptionPanel {
+  max-height: 380px;
+  overflow-y: auto;
+}
 
 /* mychart */
 .chart-container {
