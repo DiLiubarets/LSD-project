@@ -12,10 +12,20 @@ var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
 $(".mui-btn--primary").css("background-color", "#446684");
 $("#submitEmail").css("background-color", "#446684");
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 var podcastResponse;
-
+var podPlayer;
+var carouselIndex=0;
 // aos function animate 
 AOS.init();
+
+// Dark Mode Retrieval
+var savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+}
+
 // object with description about coins
 var aboutCoin = {
   bitcoin:
@@ -371,7 +381,9 @@ function podcast() {
   }).then(function(response){
     podcastResponse = response.response.items.slice(0,5);
     // console.log(response);
-    console.log(podcastResponse)
+    // console.log(podcastResponse)
+    darkMode();
+    
 
   })
 }
@@ -382,26 +394,36 @@ $(".carousel").carousel({
   fullWidth: true,
   dist: 0,
   indicators: true,
+  onCycleTo: function (ele) {
+    carouselIndex= $(ele).index(); 
+    // console.log(carouselIndex)
+  }
 });
 
-// Podcast double click function (doesnt work without window.onload)
+// Podcast widget load (doesnt work without window.onload)
 window.onload = function() {
-var podPlayer = SP.getWidget("podPlayer");
-
-$(".carousel-item").dblclick(function(){
-  console.log(savedTheme);
-  podShow = podcastResponse[this.id.slice(-1)].show_id
-  podImage = podcastResponse[this.id.slice(-1)].image_url
-  podSrc = podPlayer.iframe.src;
-  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
-  // "&cover_image_url=" + podImage;
-})
+podPlayer = SP.getWidget("podPlayer");
+podPlayer.iframe.src= "https://widget.spreaker.com/player?show_id=1242925&theme=" + savedTheme + "&playlist=show&playlist-continuous=true&playlist-loop=false&playlist-autoupdate=true&autoplay=false&live-autoplay=false&chapters-image=true&episode_image_position=right&hide-likes=false&hide-comments=false&hide-sharing=false&hide-logo=false&hide-download=true&hide-episode-description=false&hide-playlist-images=false&hide-playlist-descriptions=false&gdpr-consent=null"
 }
 
+// Podcast doubleclick function
+$(".carousel-item").dblclick(podcastUpdate)
+
+// Podcast update function
+function podcastUpdate(){
+  podShow = podcastResponse[carouselIndex].show_id
+  podImage = podcastResponse[carouselIndex].image_url
+
+  podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
+  // "&cover_image_url=" + podImage;
+}
+
+
 // Dark Mode switch
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-function darkMode(e) {
+function darkMode() {
   if (toggleSwitch.checked) {
+    savedTheme = "dark";
+    localStorage.setItem("theme", "dark"); 
     $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
     $("#body").css("color","white");
     $(".mui-panel").css("background","#0a0d18d6");
@@ -430,9 +452,11 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    savedTheme = "dark";
-    localStorage.setItem("theme", "dark"); 
+    podcastUpdate();
+   
   }else {
+    savedTheme = "light";
+    localStorage.setItem("theme", "light"); 
     $("#body").css("background", "");
     $("#body").css("color","");
     $(".mui-panel").css("background","");
@@ -460,19 +484,10 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })  
-    savedTheme = "light";
-    localStorage.setItem("theme", "light"); 
+    podcastUpdate();
   }    
 }
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
-
-// Dark Mode Retrieval
-var savedTheme = localStorage.getItem("theme")
-// console.log(savedTheme);
-if(savedTheme==="dark"){
-  toggleSwitch.checked = true;
-  darkMode();
-}
 });
