@@ -1,4 +1,4 @@
-Live Demo: https://diliubarets.github.io/project-1/
+Live Demo: https://diliubarets.github.io/LSD-project/
 
 Assignment for Carleton university codding boot camp 
 
