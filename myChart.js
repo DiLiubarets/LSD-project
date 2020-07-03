@@ -223,12 +223,14 @@ $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
+  $("#soundChart").get(0).play()
 });
 
 // listener for coin name
 $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
+  $("#soundChart").get(0).play()
 });
 
 // ajax request for contact us form with formspree
@@ -291,6 +293,7 @@ function getNews(coin){
       $('#des' + i).text(description)
       $('#link-button' + i).attr('href',explore)
       $('#card-img' + i).attr('src', image)
+      
     }
     
   
@@ -345,6 +348,7 @@ $("#newsBtn").on("click", function(){
       $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
+      $("#soundChart").get(0).play()
     })
   })
 
