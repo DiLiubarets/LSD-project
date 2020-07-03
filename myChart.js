@@ -228,17 +228,29 @@ function generalPurpose() {
   });
 }
 
+// Retrieves last viewed currency and duration
+if(localStorage.getItem("time0")){
+  configPrice(localStorage.getItem("time0"),localStorage.getItem("time1"),localStorage.getItem("time2"))
+  configPrice(localStorage.getItem("coin0"),localStorage.getItem("coin1"),localStorage.getItem("coin2"));
+}
+
 // listener for time duration menu
 $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
+  localStorage.setItem("time0",globalCoin);
+  localStorage.setItem("time1",intervalString);
+  localStorage.setItem("time2",intervalNum);
 });
 
 // listener for coin name
 $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
+  localStorage.setItem("coin0",coin);
+  localStorage.setItem("coin1",globalIntervalString);
+  localStorage.setItem("coin2",globalIntervalNum);
 });
 
 // ajax request for contact us form with formspree
