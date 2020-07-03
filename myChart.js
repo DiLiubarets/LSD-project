@@ -239,18 +239,26 @@ $("#timeDropdown").click(function (event) {
   var intervalNum = event.target.value;
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
+
+  $("#soundChart").get(0).play()
+
   localStorage.setItem("time0",globalCoin);
   localStorage.setItem("time1",intervalString);
   localStorage.setItem("time2",intervalNum);
+
 });
 
 // listener for coin name
 $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
+
+  $("#soundChart").get(0).play()
+
   localStorage.setItem("coin0",coin);
   localStorage.setItem("coin1",globalIntervalString);
   localStorage.setItem("coin2",globalIntervalNum);
+
 });
 
 // ajax request for contact us form with formspree
@@ -313,6 +321,7 @@ function getNews(coin){
       $('#des' + i).text(description)
       $('#link-button' + i).attr('href',explore)
       $('#card-img' + i).attr('src', image)
+      
     }
     
   
@@ -367,6 +376,7 @@ $("#newsBtn").on("click", function(){
       $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
+      $("#soundChart").get(0).play()
     })
   })
 
@@ -502,4 +512,25 @@ function darkMode() {
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
+
+$(toggleSwitch).on("click", function(){
+  $("#soundChart").get(0).play()
+})
+// Dark Mode Retrieval
+var savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+  darkMode();
+}
+
+$("#bigScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
+$("#smallScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
+
 });
