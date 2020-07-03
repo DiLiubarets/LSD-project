@@ -16,7 +16,6 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 var podcastResponse;
 var podPlayer;
 var carouselIndex=0;
-
 // aos function animate 
 AOS.init();
 
@@ -25,7 +24,6 @@ var savedTheme = localStorage.getItem("theme")
 // console.log(savedTheme);
 if(savedTheme==="dark"){
   toggleSwitch.checked = true;
-  // darkMode();
 }
 
 // object with description about coins
@@ -385,6 +383,7 @@ function podcast() {
     // console.log(response);
     // console.log(podcastResponse)
     darkMode();
+    
 
   })
 }
@@ -401,19 +400,17 @@ $(".carousel").carousel({
   }
 });
 
-// Podcast double click function (doesnt work without window.onload)
+// Podcast widget load (doesnt work without window.onload)
 window.onload = function() {
 podPlayer = SP.getWidget("podPlayer");
+podPlayer.iframe.src= "https://widget.spreaker.com/player?show_id=1242925&theme=" + savedTheme + "&playlist=show&playlist-continuous=true&playlist-loop=false&playlist-autoupdate=true&autoplay=false&live-autoplay=false&chapters-image=true&episode_image_position=right&hide-likes=false&hide-comments=false&hide-sharing=false&hide-logo=false&hide-download=true&hide-episode-description=false&hide-playlist-images=false&hide-playlist-descriptions=false&gdpr-consent=null"
 }
 
-// var podLink = $("a#podPlayer");
-// console.log($("#podPlayer"));
-// podLink[0].dataset.theme=savedTheme;
-
+// Podcast doubleclick function
 $(".carousel-item").dblclick(podcastUpdate)
 
+// Podcast update function
 function podcastUpdate(){
-  console.log(savedTheme);
   podShow = podcastResponse[carouselIndex].show_id
   podImage = podcastResponse[carouselIndex].image_url
 
@@ -493,12 +490,4 @@ function darkMode() {
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
-
-// // Dark Mode Retrieval
-// var savedTheme = localStorage.getItem("theme")
-// // console.log(savedTheme);
-// if(savedTheme==="dark"){
-//   toggleSwitch.checked = true;
-//   darkMode();
-// }
 });
