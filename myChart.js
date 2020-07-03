@@ -417,6 +417,7 @@ darkMode();
 function darkMode(e) {
   if (toggleSwitch.checked) {
     savedTheme = "dark";
+    localStorage.setItem("theme", "dark"); 
     $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
     $("#body").css("color","white");
     $(".mui-panel").css("background","#0a0d18d6");
@@ -445,9 +446,10 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    localStorage.setItem("theme", "dark"); 
+    
   }else {
     savedTheme = "light";
+    localStorage.setItem("theme", "light"); 
     $("#body").css("background", "");
     $("#body").css("color","");
     $(".mui-panel").css("background","");
@@ -477,7 +479,7 @@ function darkMode(e) {
     })  
     
     // console.log(podLink);
-    localStorage.setItem("theme", "light"); 
+    
   }    
 }
 
