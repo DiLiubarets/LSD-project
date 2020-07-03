@@ -471,7 +471,9 @@ function darkMode(e) {
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
-
+$(toggleSwitch).on("click", function(){
+  $("#soundChart").get(0).play()
+})
 // Dark Mode Retrieval
 var savedTheme = localStorage.getItem("theme")
 // console.log(savedTheme);
@@ -479,4 +481,13 @@ if(savedTheme==="dark"){
   toggleSwitch.checked = true;
   darkMode();
 }
+
+$("#bigScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
+$("#smallScreen").on("click", function(){
+  $("#soundNav").get(0).play();
+})
+
 });
