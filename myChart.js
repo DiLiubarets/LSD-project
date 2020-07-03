@@ -12,10 +12,21 @@ var globalCoin;
 var myChart = document.getElementById("myChart").getContext("2d");
 $(".mui-btn--primary").css("background-color", "#446684");
 $("#submitEmail").css("background-color", "#446684");
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 var podcastResponse;
+var podPlayer;
 
 // aos function animate 
 AOS.init();
+
+// Dark Mode Retrieval
+var savedTheme = localStorage.getItem("theme")
+// console.log(savedTheme);
+if(savedTheme==="dark"){
+  toggleSwitch.checked = true;
+  // darkMode();
+}
+
 // object with description about coins
 var aboutCoin = {
   bitcoin:
@@ -371,7 +382,7 @@ function podcast() {
   }).then(function(response){
     podcastResponse = response.response.items.slice(0,5);
     // console.log(response);
-    console.log(podcastResponse)
+    // console.log(podcastResponse)
 
   })
 }
@@ -386,22 +397,24 @@ $(".carousel").carousel({
 
 // Podcast double click function (doesnt work without window.onload)
 window.onload = function() {
-var podPlayer = SP.getWidget("podPlayer");
+podPlayer = SP.getWidget("podPlayer");
+}
+podLink = $("a#podPlayer");
+podLink[0].dataset.theme=savedTheme;
 
 $(".carousel-item").dblclick(function(){
-  console.log(savedTheme);
   podShow = podcastResponse[this.id.slice(-1)].show_id
   podImage = podcastResponse[this.id.slice(-1)].image_url
-  podSrc = podPlayer.iframe.src;
+  
   podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
 })
-}
 
 // Dark Mode switch
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+darkMode();
 function darkMode(e) {
   if (toggleSwitch.checked) {
+    savedTheme = "dark";
     $("#body").css("background", "linear-gradient(143deg, rgba(17,5,46,0.9) 33%, rgba(75,12,227,1) 73%");
     $("#body").css("color","white");
     $(".mui-panel").css("background","#0a0d18d6");
@@ -430,9 +443,10 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
-    savedTheme = "dark";
+    
     localStorage.setItem("theme", "dark"); 
   }else {
+    savedTheme = "light";
     $("#body").css("background", "");
     $("#body").css("color","");
     $(".mui-panel").css("background","");
@@ -460,7 +474,8 @@ function darkMode(e) {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })  
-    savedTheme = "light";
+    
+    console.log(podLink);
     localStorage.setItem("theme", "light"); 
   }    
 }
@@ -468,11 +483,11 @@ function darkMode(e) {
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
 
-// Dark Mode Retrieval
-var savedTheme = localStorage.getItem("theme")
-// console.log(savedTheme);
-if(savedTheme==="dark"){
-  toggleSwitch.checked = true;
-  darkMode();
-}
+// // Dark Mode Retrieval
+// var savedTheme = localStorage.getItem("theme")
+// // console.log(savedTheme);
+// if(savedTheme==="dark"){
+//   toggleSwitch.checked = true;
+//   darkMode();
+// }
 });
