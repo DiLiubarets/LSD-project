@@ -215,6 +215,30 @@ color: goldenrod;
   cursor: pointer;
 }
 
+/* Modal Rows */
+#row1 {
+  display:flex;
+}
+
+.card-example img {
+  width: 100%;
+  height: 250px;
+}
+
+#title0 #title1 #title2{
+display:flex;
+height: 130px;
+}
+
+#des1 #des2 #des3{
+  display: flex;
+  overflow-y: auto;
+  height: 115px;
+}
+
+#link-button0 #link-button1 #link-button2 {
+  color: #2196f3;
+}
 /* About LSD */
 .mui--text-body2 h3 {
   font-weight: 750;
