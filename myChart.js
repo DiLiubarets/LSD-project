@@ -16,7 +16,7 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 var podcastResponse;
 var podPlayer;
 var carouselIndex=0;
-var volStatus=true;
+var volStatus = true;
 // aos function animate 
 AOS.init();
 
@@ -242,7 +242,7 @@ $("#timeDropdown").click(function (event) {
   configPrice(globalCoin, intervalString, intervalNum);
 
   // Play sound & save in localstorage
-  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+  if(volStatus=true){
   $("#soundDropdown").get(0).play();
   }
   localStorage.setItem("time0",globalCoin);
@@ -256,7 +256,7 @@ $("#currentCoin").click(function (event) {
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
   // Play sound & save in localstorage
-  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+  if(volStatus=true){
   $("#soundDropdown").get(0).play();
   }
   localStorage.setItem("coin0",coin);
@@ -291,7 +291,7 @@ $("#submitEmail").click(function (e) {
       if (xhr.status === 200) {
         // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
-        if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+        if(volStatus=true){
         $("#soundEmail").get(0).play();
         }
       } else {
@@ -350,7 +350,7 @@ $("#newsBtn").on("click", function(){
   }
 
   // Play sound
-  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+  if(volStatus=true){
     $("#soundDropdown").get(0).play();
   }
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
@@ -480,6 +480,7 @@ function darkMode() {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
+    $("#smallTheme span").text(savedTheme)
     podcastUpdate();
   }else {
     savedTheme = "light";
@@ -511,17 +512,29 @@ function darkMode() {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })  
+    $("#smallTheme span").text(savedTheme)
     podcastUpdate();
   }    
 }
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
+$("#smallTheme").click(function(){
+    if(savedTheme==="light"){
+      toggleSwitch.checked = true;
+    }else {
+      toggleSwitch.checked = false;
+    }
+    darkMode();
+    if(volStatus=true){
+    $("#soundDark").get(0).play();
+    }
+})
+
 $("#checkboxWrapper").click(function(){
-  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
-    // console.log($("#volume")[0].children[0].dataset.icon)
-  $("#soundDark").get(0).play();
-  }
+  if(volStatus=true){
+    $("#soundDark").get(0).play();
+    }
 })
 
 // Dark Mode Retrieval
@@ -537,6 +550,15 @@ $("#volume").on("click", "[data-fa-i2svg]",function(){
   $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
   var audioEl = document.getElementsByTagName('audio');
   for(let i=0; i<audioEl.length; i++) audioEl[i].pause();
-  console.log("test");
+  if(volStatus===true){
+    volStatus=false;
+  }else{
+    volStatus=true;
+  }
+  console.log(volStatus)
+  
+})
+$("#smallVol").on("click", function(){
+  
 })
 });

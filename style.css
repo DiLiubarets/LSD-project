@@ -57,6 +57,9 @@ header table {
   /* padding-right: 100px; */
 }
 
+.capital {
+  text-transform: capitalize;
+}
 /* dropdown menu */
 .mui-btn--primary {
   /* background-image: linear-gradient(
