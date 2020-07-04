@@ -16,6 +16,7 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 var podcastResponse;
 var podPlayer;
 var carouselIndex=0;
+var volStatus = true;
 // aos function animate 
 AOS.init();
 
@@ -67,7 +68,7 @@ let massPopChart = new Chart(myChart, {
         hoverBorderColor: "red",
       },
       {
-        label: "5 candle average",
+        label: "5 candle Average",
         fill: false,
         data: avgArr,
         borderWidth: 1,
@@ -177,7 +178,7 @@ function getLivePrice(queryURL) {
   }).then(function (response) {
     var price = parseFloat(parseFloat(response.data.rateUsd).toFixed(3));
     // console.log(price);
-    $("#realTimePrice").html("Live price: $" + price);
+    $("#realTimePrice").html("<i class='fas fa-coins'></i> Live price: $" + price);
     arr[arr.length - 1] = price;
     
     // for moving average live
@@ -205,7 +206,7 @@ function movingAvg(data) {
       var price5 = parseFloat(parseFloat(data[i-4].priceUsd).toFixed(3));
 
       avgArr[i - delta - 1] = ((price1+price2+price3+price4+price5)/5).toFixed(3);
-      $('#average').html( " <i class='fa fa-bar-chart' aria-hidden='true'></i> "+' average: $' + avgArr[i - delta - 1] )
+      $('#average').html( '<i class="fa fa-bar-chart" aria-hidden="true"></i> Average: $' + avgArr[i - delta - 1] )
     }
 
     avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
@@ -240,12 +241,13 @@ $("#timeDropdown").click(function (event) {
   var intervalString = event.target.id;
   configPrice(globalCoin, intervalString, intervalNum);
 
-  $("#soundChart").get(0).play()
-
+  // Play sound & save in localstorage
+  if(volStatus){
+  $("#soundDropdown").get(0).play();
+  }
   localStorage.setItem("time0",globalCoin);
   localStorage.setItem("time1",intervalString);
   localStorage.setItem("time2",intervalNum);
-
 });
 
 // listener for coin name
@@ -253,12 +255,13 @@ $("#currentCoin").click(function (event) {
   var coin = event.target.id;
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
-  $("#soundChart").get(0).play()
-
+  // Play sound & save in localstorage
+  if(volStatus){
+  $("#soundDropdown").get(0).play();
+  }
   localStorage.setItem("coin0",coin);
   localStorage.setItem("coin1",globalIntervalString);
   localStorage.setItem("coin2",globalIntervalNum);
-
 });
 
 // ajax request for contact us form with formspree
@@ -288,12 +291,16 @@ $("#submitEmail").click(function (e) {
       if (xhr.status === 200) {
         // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
+        if(volStatus){
+        $("#soundEmail").get(0).play();
+        }
       } else {
         // console.log("error");
-        status.innerHTML = "Oops! There was a problem.";
+        status.innerHTML = "Oops! There was a problem. Please enter a valid email address";
       }
     };
     xhr.send(data);
+    
   }
 });
 
@@ -323,8 +330,6 @@ function getNews(coin){
       $('#card-img' + i).attr('src', image)
       
     }
-    
-  
   })
 }
 
@@ -343,7 +348,11 @@ $("#newsBtn").on("click", function(){
       search += " Blockchain";
       break
   }
-  
+
+  // Play sound
+  if(volStatus){
+    $("#soundDropdown").get(0).play();
+  }
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
   
   $.ajax({
@@ -376,7 +385,6 @@ $("#newsBtn").on("click", function(){
       $("#modal-links").append(articleContainer, "<hr>",);
       })
       $("#newsModal").css("display", "block"); 
-      $("#soundChart").get(0).play()
     })
   })
 
@@ -406,7 +414,6 @@ function podcast() {
     // console.log(podcastResponse)
     darkMode();
     
-
   })
 }
 podcast();
@@ -439,7 +446,6 @@ function podcastUpdate(){
   podPlayer.iframe.src = "https://widget.spreaker.com/player?show_id=" + podShow + "&theme=" + savedTheme + "&playlist=show&chapters-image=true" 
   // "&cover_image_url=" + podImage;
 }
-
 
 // Dark Mode switch
 function darkMode() {
@@ -474,8 +480,8 @@ function darkMode() {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })
+    $("#smallTheme span").text(savedTheme)
     podcastUpdate();
-   
   }else {
     savedTheme = "light";
     localStorage.setItem("theme", "light"); 
@@ -506,16 +512,32 @@ function darkMode() {
     $(".mui-dropdown__menu li").mouseout(function(){
       $(this).css("background","");
     })  
+    $("#smallTheme span").text(savedTheme)
     podcastUpdate();
   }    
 }
 
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
-
-$(toggleSwitch).on("click", function(){
-  $("#soundChart").get(0).play()
+$("#smallTheme").click(function(){
+    if(savedTheme==="light"){
+      toggleSwitch.checked = true;
+    }else {
+      toggleSwitch.checked = false;
+    }
+    darkMode();
+    if(volStatus){
+    $("#soundDark").get(0).play();
+    }
 })
+
+// Dark Mode toggle
+$("#checkboxWrapper").click(function(){
+  if(volStatus){
+    $("#soundDark").get(0).play();
+    }
+})
+
 // Dark Mode Retrieval
 var savedTheme = localStorage.getItem("theme")
 // console.log(savedTheme);
@@ -524,13 +546,29 @@ if(savedTheme==="dark"){
   darkMode();
 }
 
-$("#bigScreen").on("click", function(){
-  $("#soundNav").get(0).play();
+// Volume toggle
+$("#volume").on("click", "[data-fa-i2svg]",function(){
+  var audioEl = document.getElementsByTagName('audio');
+  for(let i=0; i<audioEl.length; i++) {
+    audioEl[i].pause();
+  }
+  volStatus = !volStatus;
+  console.log(volStatus)
+  $("#smallVol span").text("Volume "+volStatus)
+   $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
 })
 
-$("#smallScreen").on("click", function(){
-  $("#soundNav").get(0).play();
+// Volume toggle for smallscreen
+var smallVol = document.querySelector("#smallVol");
+smallVol.addEventListener("click", function(){
+  // console.log($("#volume svg")[0].classList)
+  var audioEl = document.getElementsByTagName('audio');
+  for(let i=0; i<audioEl.length; i++) {
+    audioEl[i].pause();
+  }
+  volStatus = !volStatus;
+  $("#smallVol span").text("Volume "+volStatus)
+  console.log(volStatus)
+  $("#volume").find('[data-fa-i2svg]').toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
 })
-
-
 });
