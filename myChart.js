@@ -242,7 +242,7 @@ $("#timeDropdown").click(function (event) {
   configPrice(globalCoin, intervalString, intervalNum);
 
   // Play sound & save in localstorage
-  if(volStatus=true){
+  if(volStatus){
   $("#soundDropdown").get(0).play();
   }
   localStorage.setItem("time0",globalCoin);
@@ -256,7 +256,7 @@ $("#currentCoin").click(function (event) {
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
   // Play sound & save in localstorage
-  if(volStatus=true){
+  if(volStatus){
   $("#soundDropdown").get(0).play();
   }
   localStorage.setItem("coin0",coin);
@@ -291,7 +291,7 @@ $("#submitEmail").click(function (e) {
       if (xhr.status === 200) {
         // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
-        if(volStatus=true){
+        if(volStatus){
         $("#soundEmail").get(0).play();
         }
       } else {
@@ -350,7 +350,7 @@ $("#newsBtn").on("click", function(){
   }
 
   // Play sound
-  if(volStatus=true){
+  if(volStatus){
     $("#soundDropdown").get(0).play();
   }
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
@@ -526,13 +526,14 @@ $("#smallTheme").click(function(){
       toggleSwitch.checked = false;
     }
     darkMode();
-    if(volStatus=true){
+    if(volStatus){
     $("#soundDark").get(0).play();
     }
 })
 
+// Dark Mode toggle
 $("#checkboxWrapper").click(function(){
-  if(volStatus=true){
+  if(volStatus){
     $("#soundDark").get(0).play();
     }
 })
@@ -547,18 +548,27 @@ if(savedTheme==="dark"){
 
 // Volume toggle
 $("#volume").on("click", "[data-fa-i2svg]",function(){
-  $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
   var audioEl = document.getElementsByTagName('audio');
-  for(let i=0; i<audioEl.length; i++) audioEl[i].pause();
-  if(volStatus===true){
-    volStatus=false;
-  }else{
-    volStatus=true;
+  for(let i=0; i<audioEl.length; i++) {
+    audioEl[i].pause();
   }
+  volStatus = !volStatus;
   console.log(volStatus)
-  
+  $("#smallVol span").text("Volume "+volStatus)
+   $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
 })
-$("#smallVol").on("click", function(){
-  
+
+// Volume toggle for smallscreen
+var smallVol = document.querySelector("#smallVol");
+smallVol.addEventListener("click", function(){
+  // console.log($("#volume svg")[0].classList)
+  var audioEl = document.getElementsByTagName('audio');
+  for(let i=0; i<audioEl.length; i++) {
+    audioEl[i].pause();
+  }
+  volStatus = !volStatus;
+  $("#smallVol span").text("Volume "+volStatus)
+  console.log(volStatus)
+  $("#volume").find('[data-fa-i2svg]').toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
 })
 });
