@@ -16,7 +16,7 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 var podcastResponse;
 var podPlayer;
 var carouselIndex=0;
-var volStatus;
+var volStatus=true;
 // aos function animate 
 AOS.init();
 
@@ -242,7 +242,9 @@ $("#timeDropdown").click(function (event) {
   configPrice(globalCoin, intervalString, intervalNum);
 
   // Play sound & save in localstorage
+  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
   $("#soundDropdown").get(0).play();
+  }
   localStorage.setItem("time0",globalCoin);
   localStorage.setItem("time1",intervalString);
   localStorage.setItem("time2",intervalNum);
@@ -254,7 +256,9 @@ $("#currentCoin").click(function (event) {
   configPrice(coin, globalIntervalString, globalIntervalNum);
 
   // Play sound & save in localstorage
+  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
   $("#soundDropdown").get(0).play();
+  }
   localStorage.setItem("coin0",coin);
   localStorage.setItem("coin1",globalIntervalString);
   localStorage.setItem("coin2",globalIntervalNum);
@@ -287,7 +291,9 @@ $("#submitEmail").click(function (e) {
       if (xhr.status === 200) {
         // console.log("success");
         status.innerHTML = "Thanks! Your message was send.";
+        if($("#volume")[0].children[0].dataset.icon==="volume-up"){
         $("#soundEmail").get(0).play();
+        }
       } else {
         // console.log("error");
         status.innerHTML = "Oops! There was a problem. Please enter a valid email address";
@@ -344,8 +350,9 @@ $("#newsBtn").on("click", function(){
   }
 
   // Play sound
-  $("#soundDropdown").get(0).play();
-
+  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+    $("#soundDropdown").get(0).play();
+  }
   var queryURL = `https://gnews.io/api/v3/search?q=${search}&token=${key2}`
   
   $.ajax({
@@ -511,9 +518,10 @@ function darkMode() {
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
 $("#checkboxWrapper").click(function(){
-  // if($("#volume").hasClass("fa-volume-up")){
+  if($("#volume")[0].children[0].dataset.icon==="volume-up"){
+    // console.log($("#volume")[0].children[0].dataset.icon)
   $("#soundDark").get(0).play();
-  // }
+  }
 })
 
 // Dark Mode Retrieval
@@ -525,12 +533,10 @@ if(savedTheme==="dark"){
 }
 
 // Volume toggle
-$("#volume").click(function(){
-  // $("#volIcon").toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
-  console.log($("#volume"))
+$("#volume").on("click", "[data-fa-i2svg]",function(){
+  $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
   var audioEl = document.getElementsByTagName('audio');
   for(let i=0; i<audioEl.length; i++) audioEl[i].pause();
   console.log("test");
 })
-
 });
