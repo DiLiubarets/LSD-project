@@ -39,10 +39,10 @@ img {
   cursor: pointer;
 }
 
-
 ul.mui-list--inline {
-  margin-right: 4em;
+  /* margin-right: 4em; */
   font-size: 17px;
+  margin-left: 35px
 }
 
 header a {
@@ -53,6 +53,13 @@ header table {
   width: 100%;
 }
 
+#volume {
+  /* padding-right: 100px; */
+}
+
+.capital {
+  text-transform: capitalize;
+}
 /* dropdown menu */
 .mui-btn--primary {
   /* background-image: linear-gradient(
@@ -298,9 +305,8 @@ footer {
 /* Dark Mode Button */
 .theme-switch-wrapper {
   display:flex ;
-  position: absolute;
-  right: 0.5%;
-  top: 4%;
+  position: relative;
+  top: 10px;
 }
 
 .theme-switch {
