@@ -6,23 +6,15 @@
     <title>LSD crypto project</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-     <!-- Fontawesome -->
-    <!-- <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <!-- Fontawesome -->
+    <!-- <script src="https://kit.fontawesome.com/b9c5498292.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/b9c5498292.js" crossorigin="anonymous"></script>
 
     <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
@@ -54,9 +46,9 @@
             <li class="mui--text-display3">LSD</li>
             </ul>
           </td>
-          <td class="mui--text-right">
-
+          
             <!-- Navbar Menu Regular-->
+            <td class="mui--text-right">
             <ul class="mui-list--inline mui--text-subhead" id="bigScreen">
               <li>
                 <a href="#body"><span class="mui-text mui-caret--right">Chart</span></a>
@@ -73,18 +65,22 @@
               <li>
                 <a href="#contact-us"><span class="mui-text mui-caret--right">Contact Us</span></a>
               </li>
+              <li>
+                <!-- Volume Toggle -->
+                <div id="volume">
+                  <i id="volIcon" class="fa fa-volume-up"></i>
+                </div>
+              </li>
+              <li>
+                <!-- Darkmode Switch -->
+              <div id="checkboxWrapper" class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                  <input type="checkbox" id="checkbox" />
+                  <div class="slider round"></div>
+                </label>
+              </div>
+              </li>
             </ul>
-
-            <!-- Darkmode Switch -->
-            <div id="checkboxWrapper" class="theme-switch-wrapper">
-              <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-              </label>
-            </div>
-
-            <!-- Volume Toggle -->
-            <i class="fa fa-volume-up" id="volume" ></i>
 
             <!-- Navbar Menu Reduced width -->
             <div class="mui-dropdown mui-dropdown--left" id="smallScreen">
@@ -145,15 +141,16 @@
       <div class="mui-col-md-4">
         <div class="mui-panel">
           <!-- real life price  -->
-          <span id="realTimePrice" class="mui--text-title">Live price:</span
-          ><br />
-          <span id="average" class="mui--text-title"
-            ><i class="fa fa-bar-chart" aria-hidden="true"></i> Average:</span
+          <span id="realTimePrice" class="mui--text-title">
+          </span>
+          <br/>
+          <span id="average" class="mui--text-title">
+            </span
           ><br />
           <!-- dropdown menu with coin names -->
           <div id="coinMenu" class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-              <i class="fa fa-btc" aria-hidden="true"> Coins</i>
+              <i class="fa fa-bitcoin"></i> Coins
               <span class="mui-caret"></span>
             </button>
             <ul id="currentCoin" class="mui-dropdown__menu">
@@ -171,7 +168,7 @@
           <!-- dropdown menu with time candles -->
           <div class="mui-dropdown">
             <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-              <i class="fa fa-bar-chart" aria-hidden="true">Time</i>
+              <i class="fa fa-bar-chart" aria-hidden="true"></i> Time
               <span class="mui-caret"></span>
             </button>
 
@@ -188,7 +185,7 @@
             </ul>
           </div>
           <div class="mui-btn mui-btn--primary" id="newsBtn">
-            <i class="fa" aria-hidden="true">Headlines</i>
+            <i class="far fa-newspaper"></i> Headlines
           </div>
         </div>
         <div id="descriptionPanel" class="mui-panel">
@@ -397,11 +394,10 @@
     <footer>
       <div class="mui-container mui--text-center mui--text-bottom">
         <a href="https://github.com/DiLiubarets/project-1">
-          View project code on Github<br /><i
-            class="fa fa-github"
-            aria-hidden="true"
-          ></i
-        ></a>
+          View project code on Github<br />
+          <!-- <i class="fas fa-github" aria-hidden="true"></i> -->
+          <i class="fab fa-github"></i>
+        </a>
       </div>
     </footer>
 

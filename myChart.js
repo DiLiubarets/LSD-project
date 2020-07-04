@@ -16,6 +16,7 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 var podcastResponse;
 var podPlayer;
 var carouselIndex=0;
+var volStatus;
 // aos function animate 
 AOS.init();
 
@@ -67,7 +68,7 @@ let massPopChart = new Chart(myChart, {
         hoverBorderColor: "red",
       },
       {
-        label: "5 candle average",
+        label: "5 candle Average",
         fill: false,
         data: avgArr,
         borderWidth: 1,
@@ -177,7 +178,7 @@ function getLivePrice(queryURL) {
   }).then(function (response) {
     var price = parseFloat(parseFloat(response.data.rateUsd).toFixed(3));
     // console.log(price);
-    $("#realTimePrice").html("Live price: $" + price);
+    $("#realTimePrice").html("<i class='fas fa-coins'></i> Live price: $" + price);
     arr[arr.length - 1] = price;
     
     // for moving average live
@@ -205,7 +206,7 @@ function movingAvg(data) {
       var price5 = parseFloat(parseFloat(data[i-4].priceUsd).toFixed(3));
 
       avgArr[i - delta - 1] = ((price1+price2+price3+price4+price5)/5).toFixed(3);
-      $('#average').html( " <i class='fa fa-bar-chart' aria-hidden='true'></i> "+' average: $' + avgArr[i - delta - 1] )
+      $('#average').html( '<i class="fa fa-bar-chart" aria-hidden="true"></i> Average: $' + avgArr[i - delta - 1] )
     }
 
     avgArr[avgArr.length - 1] = ((arr[arr.length-1]+arr[arr.length-2]+arr[arr.length-3]+arr[arr.length-4]+arr[arr.length-5])/5).toFixed(3);
@@ -510,7 +511,9 @@ function darkMode() {
 // Dark Mode firing
 toggleSwitch.addEventListener("change", darkMode, false);
 $("#checkboxWrapper").click(function(){
+  // if($("#volume").hasClass("fa-volume-up")){
   $("#soundDark").get(0).play();
+  // }
 })
 
 // Dark Mode Retrieval
@@ -523,9 +526,11 @@ if(savedTheme==="dark"){
 
 // Volume toggle
 $("#volume").click(function(){
+  // $("#volIcon").toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
+  console.log($("#volume"))
+  var audioEl = document.getElementsByTagName('audio');
+  for(let i=0; i<audioEl.length; i++) audioEl[i].pause();
   console.log("test");
-  $(this).toggleClass("fa fa-volume-up").toggleClass("fa fa-volume-mute");
-
 })
 
 });
