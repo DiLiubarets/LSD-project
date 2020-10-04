@@ -3,9 +3,9 @@
 Assignment for Carleton university codding boot camp 
 
 On project works:
-Liam: https://github.com/liam-mack, 
-Shamik: https://github.com/shamik05, 
-Dina:https://github.com/DiLiubarets
+[Liam](https://github.com/liam-mack), 
+[Shamik](https://github.com/shamik05), 
+[Dina](https://github.com/DiLiubarets)
 
 
 ## About LSD
