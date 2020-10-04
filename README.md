@@ -1,7 +1,6 @@
-Live Demo: https://diliubarets.github.io/LSD-project/
+## [Live Demo:] (https://diliubarets.github.io/LSD-project/)
 
 Assignment for Carleton university codding boot camp 
-
 
 On project works:
 Liam: https://github.com/liam-mack, 
@@ -9,8 +8,9 @@ Shamik: https://github.com/shamik05,
 Dina:https://github.com/DiLiubarets
 
 
-About LSD
-LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. Whether you are a professional investor or an amateur enthusiast, LSD provides all the necessary tools to grab the market bull by its horns.
+## About LSD
+LSD is an exchange-neutral tool designed for the modern cryptocurrency/token traders. Whether you are a professional investor or an amateur enthusiast, 
+LSD provides all the necessary tools to grab the market bull by its horns.
 
  Track real-time prices to outmaneuver your opposition
  Predict the future with our database of historical prices
@@ -18,22 +18,14 @@ LSD is an exchange-neutral tool designed for the modern cryptocurrency/token tra
  View how your crypto stacks up against the competition by staying informed through our news section
 Powered by CoinCap and NewsAPI, LSD brings you accurate performance statistics for free!
 
-# Project 1
+## Application
 
-## Application Requirements
+* Has client-side APIs [GNews API](https://gnews.io/) && [Worldwide news API](https://newsapi.org) && [Spreaker for Developers, PODCAST API](https://api.spreaker.com) && [Coincap API](https://coincap.io)
 
-* Must use at least two server-side APIs
+* Uses a MUI as a lightweight CSS framework that follows Google's Material Design guidelines
 
-* Must use a CSS framework _other than_ Bootstrap
+* Is interactive (i.e: accept and respond to user input)
 
-* Must be interactive (i.e: accept and respond to user input)
+* Meets good quality coding standards
 
-* Use at least one new third-party API
-
-* Must have a polished UI
-
-* Must meet good quality coding standards
-
-* Does not use alerts, confirms or prompts (look into _modals_)
-
-* Must be deployed to GitHub Pages
+* Deployed to [GitHub Pages](https://diliubarets.github.io/LSD-project/) 
